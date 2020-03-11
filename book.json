@@ -5,7 +5,7 @@
     "plugins": ["disqus"],
     "pluginsConfig": {
         "disqus": {
-            "shortName": "freeradius"
+            "shortName": "ucn-disqus"
         }
     } 
 }
