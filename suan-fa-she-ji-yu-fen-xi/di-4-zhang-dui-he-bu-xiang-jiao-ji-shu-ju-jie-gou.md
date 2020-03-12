@@ -2,9 +2,18 @@
 
 ## 堆
 
-* 应用场景：多次插入元素和寻找max、min值
-* 性质：几乎完全二叉树、父节点 $$\geq$$ 孩子节点\(大顶堆\)
-* **Sift-Up：数值变大，上移**
+### 应用场景
+
+多次插入元素和寻找max、min值
+
+### 性质
+
+1. 几乎完全二叉树
+2. 父节点 $$\geq$$ 孩子节点\(大顶堆\)
+
+### **代码**
+
+#### **Sift-Up：数值变大，上移**
 
 ```cpp
 void SiftUp( int H[], int i )
@@ -28,7 +37,7 @@ void SiftUp( int H[], int i )
 //时间复杂度O(logn)；空间复杂度O(1)
 ```
 
-* **Sift-down：数值变小，下移**
+#### **Sift-down：数值变小，下移**
 
 ```cpp
 void SiftDown( int H[], int i )
@@ -54,7 +63,7 @@ void SiftDown( int H[], int i )
 //时间复杂度O(logn)；空间复杂度O(1)
 ```
 
-* **HeapTest：判断是否是堆**
+#### **HeapTest：判断是否是堆**
 
 ```cpp
 bool HeapTest( int H[] )
@@ -72,7 +81,7 @@ bool HeapTest( int H[] )
 }//HeapTest 
 ```
 
-* **Insert：插入元素**
+#### **Insert：插入元素**
 
 ```cpp
 void Insert( int H[], int x )
@@ -84,7 +93,7 @@ void Insert( int H[], int x )
 }//Insert
 ```
 
-* **Delete：删除元素**
+#### **Delete：删除元素**
 
 ```cpp
 void Delete( int H[], int i ) 
@@ -105,7 +114,7 @@ void Delete( int H[], int i )
 //时间复杂度O(logn)；空间复杂度O(1)
 ```
 
-* **DeleteMax：删除根节点**
+#### **DeleteMax：删除根节点**
 
 ```cpp
 int DeleteMax( int H[] )
