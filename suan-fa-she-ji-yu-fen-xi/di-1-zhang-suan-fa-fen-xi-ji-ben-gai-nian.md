@@ -155,7 +155,7 @@ void bottumUpSort(int arr[], int n)
 {% endhint %}
 
 {% hint style="warning" %}
-1. $$1<log log n<log n<\sqrt{n}<n<nlog n< n^2<n!<2^{n^2}$$ 
+1. $$1<log log n<log n<\sqrt{n}<n<nlog n< n^2 < 2^n <n!<n^n<2^{n^2}$$ 
 2. $$logn^k = klogn=Θ(logn)$$ 
 3. $$log n!= \sum_{j=1}^n {logj}= O(nlogn)$$ 
 {% endhint %}
@@ -167,7 +167,7 @@ void bottumUpSort(int arr[], int n)
 
 ### 0x01 用 _Θ_ 符号表示下列函数：
 
-\(d\) $$\frac {n!} {2^n}+2^{\frac {n}{2}}：Θ(2^{\frac {n}{2}})$$ 
+\(d\) $$\frac {n!} {2^n}+n^{\frac {n}{2}}：Θ(n^{\frac {n}{2}})$$ 
 
 \*\*\*\*
 
