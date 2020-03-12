@@ -3,6 +3,7 @@
 * [前言](README.md)
 * [计算机组成原理2](ji-suan-ji-zu-cheng-yuan-li-2/README.md)
   * [第1章 计算机系统基础概述](ji-suan-ji-zu-cheng-yuan-li-2/di-1-zhang-ji-suan-ji-xi-tong-ji-chu-gai-shu.md)
+  * [第2章 数据的机器级表示与处理](ji-suan-ji-zu-cheng-yuan-li-2/di-2-zhang-shu-ju-de-ji-qi-ji-biao-shi-yu-chu-li.md)
 * [概率论与数理统计2](gai-lv-lun-yu-shu-li-tong-ji-2/README.md)
   * [第1章  概率论的基本概念](gai-lv-lun-yu-shu-li-tong-ji-2/di-yi-zhang-gai-lv-lun-de-ji-ben-gai-nian.md)
   * [第2章 随机变量及其分布](gai-lv-lun-yu-shu-li-tong-ji-2/di-2-zhang-sui-ji-bian-liang-ji-qi-fen-bu.md)
