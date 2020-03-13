@@ -19,4 +19,8 @@
   * [第3章 社会主义改造理论](mao-ze-dong-si-xiang-he-zhong-guo-te-se-she-hui-zhu-yi-li-lun-ti-xi-gai-lun/di-3-zhang-she-hui-zhu-yi-gai-zao-li-lun.md)
 * [移动互联网时代的信息安全防护](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/README.md)
   * [第1讲 课程概述](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-1-jiang-ke-cheng-gai-shu.md)
+  * [第2讲 信息安全威胁](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-2-jiang-xin-xi-an-quan-wei-xie.md)
+  * [第3讲 信息安全概念](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-3-jiang-xin-xi-an-quan-gai-nian.md)
+  * [第4讲 信息安全防护体系](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-4-jiang-xin-xi-an-quan-fang-hu-ti-xi.md)
+  * [第5讲 计算机设备与环境安全--原理及分析](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-5-jiang-ji-suan-ji-she-bei-yu-huan-jing-an-quan-yuan-li-ji-fen-xi.md)
 
