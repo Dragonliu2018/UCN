@@ -17,5 +17,4 @@
   * [第1章 毛泽东思想及其历史地位](mao-ze-dong-si-xiang-he-zhong-guo-te-se-she-hui-zhu-yi-li-lun-ti-xi-gai-lun/di-1-zhang-mao-ze-dong-si-xiang-ji-qi-li-shi-di-wei.md)
   * [第2章 新民主主义革命理论](mao-ze-dong-si-xiang-he-zhong-guo-te-se-she-hui-zhu-yi-li-lun-ti-xi-gai-lun/di-2-zhang-xin-min-zhu-zhu-yi-ge-ming-li-lun.md)
   * [第3章 社会主义改造理论](mao-ze-dong-si-xiang-he-zhong-guo-te-se-she-hui-zhu-yi-li-lun-ti-xi-gai-lun/di-3-zhang-she-hui-zhu-yi-gai-zao-li-lun.md)
-* [Untitled](untitled.md)
 
