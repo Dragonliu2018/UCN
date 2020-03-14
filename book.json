@@ -1,5 +1,11 @@
-"pluginsConfig": {
+{"title": "UCN",
+    "version": "1",
+    "description": "NUAA计算机科学与技术学院信息安全课程笔记",
+    "author": "Dragonliu2018 <dragonliu2018@gmail.com>",
+    "plugins": ["disqus"],
+    "pluginsConfig": {
         "disqus": {
             "shortName": "ucn-disqus"
         }
+    } 
 }
