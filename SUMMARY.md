@@ -25,5 +25,6 @@
   * [第5讲 计算机设备与环境安全--原理及分析](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-5-jiang-ji-suan-ji-she-bei-yu-huan-jing-an-quan-yuan-li-ji-fen-xi.md)
 * [机器视觉实验室](ji-qi-shi-jue-shi-yan-shi/README.md)
   * [准备工作](ji-qi-shi-jue-shi-yan-shi/zhun-bei-gong-zuo.md)
+  * [图像滤波](ji-qi-shi-jue-shi-yan-shi/tu-xiang-lv-bo.md)
 * [Test](test.md)
 
