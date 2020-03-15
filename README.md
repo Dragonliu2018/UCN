@@ -10,6 +10,12 @@ description: 胡说八道一番～
 　　逝者如斯夫，时间向来是勤奋的代表，一直向前，绝不拖延。听学长学姐说“大学只有三年”，已经走过大一上、大一下、大二上、大二下一点的我感觉有些恍惚，这一年半的时间到底做了什么，收获了什么，大脑一片空白，挠掉了几根头发，只能想出是完成了从小白到菜鸟的进化。想想刚入学的豪言壮志（在信息安全邻域做到优秀），想想\*\*Ｈ同学对我的教导与启发（To be MVP），我似乎对MVP的热情冷却了。所以，线上笔记可能为大学四年留下足迹（瞎扯那么多，还是考试复习时可能有用处）。  
 　　最后再喊一下口号😂：趁\(Too\)年轻\(young\)，趁\(too\)天真\(simple\)，趁\(sometime\)幼稚\(naive\)，Just do it。
 
+{% hint style="danger" %}
+**注意**：  
+1. 电脑观看更佳，手机端可能会出现图片无法加载的情况。  
+2. 浏览器使用，引自官方文档：We support the current versions of [Chrome](https://www.google.com/chrome/), [Firefox](http://www.mozilla.org/firefox/), [Safari](http://www.apple.com/safari/), and [Microsoft Edge](https://www.microsoft.com/en-us/windows/microsoft-edge).
+{% endhint %}
+
 {% hint style="success" %}
 博客链接：[我跳](http://dragonliu.tk/)
 {% endhint %}
@@ -17,4 +23,6 @@ description: 胡说八道一番～
 {% hint style="info" %}
 去github点个star：[我跳](https://github.com/Dragonliu2018/UCN/)
 {% endhint %}
+
+
 
