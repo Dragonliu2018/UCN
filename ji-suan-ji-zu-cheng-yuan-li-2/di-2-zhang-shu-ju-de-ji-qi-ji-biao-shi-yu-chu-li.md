@@ -70,15 +70,41 @@
 | short \(int\) | 2 | $$-2^{15}(-32 768) $$ ~ $$2^{15}-1(32 767)$$  |
 | usigned short | 2 | 0 ~ $$2^{16}-1(65 535)$$  |
 | int | 4 | $$-2^{31}(-2 147 483 648)$$ ~ $$2^{31}-1(2 147 483 647)$$  |
-| usigned int | 4 | 0 ~ $$2^{32}-1(4 294 967 295)$$  |
+| usigned （int\) | 4 | 0 ~ $$2^{32}-1(4 294 967 295)$$  |
 | long int  | 4 | $$-2^{31}(-2 147 483 648)$$ ~ $$2^{31}-1(2 147 483 647)$$  |
 | usigned long | 4 | 0 ~ $$2^{32}-1(4 294 967 295)$$  |
 | long long | 8 | $$-2^{63}(-9.2233720368548e+18)$$ ~ $$2^{63}-1(9.2233720368548e+18)$$  |
 | usigned long long | 8 | 0 ~ $$2^{64}-1(1.844674407371e+19)$$  |
 
+#### 2. 编译器约定
 
+1. 若表达式中同时有无符号和带符号整数，则C编译器将带符号整数强制转换为无符号数。
+2. 处理常量时默认的类型
 
+![&#x56FE;1 C&#x8BED;&#x8A00;&#x5904;&#x7406;&#x5E38;&#x91CF;&#x65F6;&#x9ED8;&#x8BA4;&#x7684;&#x7C7B;&#x578B;](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-17_17-25-12.jpg)
 
+### 0x02 牛刀小试
+
+![&#x56FE;2](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-17_17-40-25.jpg)
+
+![&#x56FE;3](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-17_17-44-21.jpg)
+
+![&#x56FE;4](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-17_11-45-49.jpg)
+
+![&#x56FE;5](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-17_11-52-55.jpg)
+
+![&#x56FE;6](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-17_18-01-37.jpg)
+
+### 0x03 问题讨论1
+
+![&#x56FE;7](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-17_11-58-58.jpg)
+
+1. 不永真， $$0x0fffffff$$ ，使其溢出且最高位为1
+2. 不永真， $$0x80000000$$ ，模拟钟表回拨
+3. 永真；当x位于0x80000000~0xffffffff时，x&lt;0；当x位于0x00000000~0x7fffffff时，-x位于0x80000001~0x00000000，满足 -x ≤ 0；
+4. 不永真：0x80000000
+
+### 0x04 问题讨论2
 
 
 
