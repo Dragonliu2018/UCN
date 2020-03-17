@@ -79,7 +79,7 @@ plt.show()
 
 1. **定义**：高斯滤波只考虑了周边点与中心点的空间距离来计算得到权重，会模糊掉边缘。在高斯滤波的基础上加入了像素值\(灰度\)权重项，也就是说既要考虑距离因素，也要考虑像素值差异的影响，像素值越相近，权重越大。参考：[双边滤波详解](http://www.360doc.com/content/17/0306/14/28838452_634420847.shtml)、[【图像处理】——双边滤波](https://blog.csdn.net/u013921430/article/details/84532068)
 2. **公式：** 像素值权重     $$G_r= exp(-{\frac{||I_p-I_q||^2}{2σ^2_r}})$$  空间距离权重  $$G_s= exp(-{\frac{||p-q||^2}{2σ^2_s}})$$  滤波窗口内每个像素值的权重和 $$W(q) = \sum_{p\in S} G_s(p)G_r(p)$$ ---用于权重的归一化 滤波结果： $$BF = \frac {1}{W_q}\sum_{p\in S} G_s(p)G_r(p)*I_p$$ 
-3. **代码**：OpenCV在Python中双边滤波函数是**cv2.bilateralFilter\(src, d, sigmaColor, sigmaSpace）**其中，src是原图片，d是领域的直径，sigmaColor和sigmaSpace是灰度值相似性高斯函数标准差和空间高斯函数标准差。时间复杂度 $$O(Nr^2)$$ 
+3. **代码**：OpenCV在Python中双边滤波函数是**cv2.bilateralFilter\(src, d, sigmaColor, sigmaSpace）**时间复杂度 $$O(Nr^2)$$  **① s**rc是输入图像； ② d是在过滤期间使用的每个像素邻域的直径，如果输入d非0，则sigmaSpace由d计算得出，如果sigmaColor没输入，则sigmaColor由sigmaSpace计算得出； ③ sigmaColor是灰度值相似性高斯函数标准差，色彩空间的标准方差，一般尽可能大， 较大的参数值意味着像素邻域内较远的颜色会混合在一起， 从而产生更大面积的半相等颜色； ④ sigmaSpace是空间高斯函数标准差，坐标空间的标准方差\(像素单位\)，一般尽可能小。 参数值越大意味着只要它们的颜色足够接近，越远的像素都会相互影响。 当d &gt; 0时，它指定邻域大小而不考虑sigmaSpace。 否则，d与sigmaSpace成正比。
 
 ```python
 #encoding:utf-8
