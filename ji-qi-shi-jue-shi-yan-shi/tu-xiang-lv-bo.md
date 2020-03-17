@@ -63,7 +63,8 @@ img_Guassian = cv2.GaussianBlur(source, (5,5), 0)
 
 
 #显示图形
-titles = ['Source Image', 'BoxFilter Image', 'Blur Image', 'Median Image', 'Guassian Image']  
+titles = ['Source Image', 'BoxFilter Image', 'Blur Image', 
+         'Median Image', 'Guassian Image']  
 images = [source, img_box, img_blur, img_Guassian, img_median]  
 for i in range(5):  
    plt.subplot(2, 3, i+1), plt.imshow(images[i], 'gray')  
