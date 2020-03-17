@@ -125,7 +125,8 @@ plt.show()
 
 #### **3. 代码1\(引导滤波\)**：
 
-　　时间复杂度O\(N\)，当 r 与 ϵ 越大，图像被平滑的程度越大。伪代码中：r是窗口半径， $$f_{mean}(I,r)$$ 表示在\(r, r\)窗口对图像做均值滤波。大佬博客：[我跳](https://blog.csdn.net/u013921430/article/details/99695647)
+　　第一个代码块是手写实现引导滤波。时间复杂度O\(N\)，当 r 与 ϵ 越大，图像被平滑的程度越大。伪代码中：r是窗口半径， $$f_{mean}(I,r)$$ 表示在\(r, r\)窗口对图像做均值滤波。大佬博客：[我跳](https://blog.csdn.net/u013921430/article/details/99695647)   
+　　第二个代码块是使用的现有库。参考：[我跳](https://jinzhangyu.github.io/2018/09/06/2018-09-06-OpenCV-Python%E6%95%99%E7%A8%8B-16-%E5%B9%B3%E6%BB%91%E5%9B%BE%E5%83%8F-3/)
 
 ![&#x56FE;1 GF&#x7B97;&#x6CD5;&#x6846;&#x67B6;](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/GF.png)
 
@@ -214,6 +215,68 @@ if __name__ == '__main__':
     main()
 ```
 
+```python
+# -*- coding: utf-8 -*-
+"""
+@First_author: Jin ZhangYu
+@Second_author: Dragon Liu
+Operating environment: Python 3.7.1
+lib:  opencv-contrib-python
+Date: 2020/3/26
+"""
+# 导入库
+import argparse
+import cv2
+import matplotlib.pyplot as plt
+import skimage
+import numpy as np
+
+# 构造参数解析器
+# ap = argparse.ArgumentParser()
+# ap.add_argument("-H:\project_work\Machine_Vision_Lab\thesis\Gaussian\code", "--02.png", required=True, help = "Path to the image")
+# args = vars(ap.parse_args())
+
+# 加载图像并显示
+input_fn = '02.png'
+# img = cv2.imread(args["image"],1)
+img = cv2.imread(input_fn)
+img = img[:,:,::-1]
+guide = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
+# 进行导向滤波
+dst1 = cv2.ximgproc.guidedFilter(
+            guide=guide, src=img, radius=16, eps=50, dDepth=-1)
+dst2 = cv2.ximgproc.guidedFilter(
+            guide=guide, src=img, radius=16, eps=200, dDepth=-1)
+dst3 = cv2.ximgproc.guidedFilter(
+            guide=guide, src=img, radius=16, eps=1000, dDepth=-1)
+
+# 绘制图片
+images = [img,[dst1,dst2,dst3]]
+titles =    [
+                'Original',
+                ['Guided Filter eps=50','Guided Filter eps=200','Guided Filter eps=1000']
+            ]
+
+# 绘制原图
+plt.figure(figsize=(9,4))
+
+plt.subplot(2, 3, 2),plt.imshow(images[0])
+plt.title(titles[0], fontsize=10),plt.xticks([]), plt.yticks([])
+
+plt.subplot(2, 3, 4),plt.imshow(images[1][0])
+plt.title(titles[1][0], fontsize=10),plt.xticks([]), plt.yticks([])
+
+plt.subplot(2, 3, 5),plt.imshow(images[1][1])
+plt.title(titles[1][1], fontsize=10),plt.xticks([]), plt.yticks([])
+
+plt.subplot(2, 3, 6),plt.imshow(images[1][2])
+plt.title(titles[1][2], fontsize=10),plt.xticks([]), plt.yticks([])
+
+# plt.savefig('1_out.png', transparent=True, dpi=300, pad_inches = 0)
+plt.show()
+```
+
 #### 4. 代码2\(快速导向滤波\)
 
 　　****通过下采样减少像素点，计算mean\_a & mean\_b后进行上采样恢复到原有的尺寸大小。假设缩放比例为s,那么缩小后像素点的个数为 $$\frac {N}{s^2}$$ ，那么时间复杂度变为 $$O(\frac {N}{s^2})$$ 。伪代码中：fmean代表均值平滑，fsubsample代表图像下采样即缩小图像，fupsample代表图片上采样即放大图像，s为缩小系数。参考：[我跳](https://blog.csdn.net/wsp_1138886114/article/details/84228939?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
@@ -292,6 +355,56 @@ if __name__ == '__main__':
     cv2.imshow("winSize_16", guideFilter_img )
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+```
+
+### 0x07 高通滤波 -- 边缘检测/高反差保留
+
+1. **定义**：
+2. **代码**：使用的函数有：`cv2.Sobel()` , `cv2.Schar()` , `cv2.Laplacian()` Sobel, scharr其实是求一阶或者二阶导数。scharr是对Sobel的优化。 Laplacian是求二阶导数。cv2.Sobel\(\) 是一种带有方向过滤器。参考：[我跳](https://blog.csdn.net/wsp_1138886114/article/details/82872838?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
+
+```python
+# -*- coding: utf-8 -*-
+"""
+@First_author: SongpingWang
+@Second_author: Dragon Liu
+Operating environment: Python 3.7.1
+lib:  opencv-python
+Date: 2020/3/26
+"""
+
+"""
+dst = cv2.Sobel(src, ddepth, dx, dy[, dst[, ksize[, scale[, delta[, borderType]]]]])
+src:    需要处理的图像；
+ddepth: 图像的深度，-1表示采用的是与原图像相同的深度。 
+        目标图像的深度必须大于等于原图像的深度；
+dx和dy: 求导的阶数，0表示这个方向上没有求导，一般为0、1、2。
+
+dst     不用解释了；
+ksize： Sobel算子的大小，必须为1、3、5、7。  ksize=-1时，会用3x3的Scharr滤波器，
+        它的效果要比3x3的Sobel滤波器要好 
+scale： 是缩放导数的比例常数，默认没有伸缩系数；
+delta： 是一个可选的增量，将会加到最终的dst中， 默认情况下没有额外的值加到dst中
+borderType： 是判断图像边界的模式。这个参数默认值为cv2.BORDER_DEFAULT。
+
+"""
+
+import cv2
+
+img=cv2.imread('02.png',cv2.IMREAD_COLOR)
+x=cv2.Sobel(img,cv2.CV_16S,1,0)
+y=cv2.Sobel(img,cv2.CV_16S,0,1)
+
+absx=cv2.convertScaleAbs(x)
+absy=cv2.convertScaleAbs(y)
+dist=cv2.addWeighted(absx,0.5,absy,0.5,0)
+
+cv2.imshow('original_img',img)
+cv2.imshow('y',absy)
+cv2.imshow('x',absx)
+cv2.imshow('dsit',dist)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 ```
 
 
