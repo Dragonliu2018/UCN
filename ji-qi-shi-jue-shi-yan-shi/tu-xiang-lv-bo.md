@@ -114,9 +114,18 @@ plt.show()
 
 ### 0x06  引导滤波 -- **边缘保护滤波**
 
-1. **定义**：引导滤波的思想用一张引导图像产生权重，从而对输入图像进行处理。引导滤波除了可以用于图像平滑，还可以用于HDR压缩、细节增强、图像去雾、联合上采样等图像处理任务。引导滤波中空间域的贡献自然取决于窗口的大小，即由参数 r 决定。而标准差则是评判颜色差异性的参数，窗口中标准差越大，说明局部的像素相似性越差。
-2. **公式：**[【图像处理】引导滤波](https://blog.csdn.net/u013921430/article/details/99695647) ① 权重 $$W_{ij}(i,j) = \frac{1}{|ω|^2} \sum_{k:(i,j)\in ω_k} (1+ \frac{(I_i-μ_k)(I_j-μ_k)}{σ_k^2+ϵ})$$   \(局部窗口 $$ω_k$$ ；ϵ是 $$L_2$$ 范数正则化系数，防止$$a_k$$ ​过大； $$μ_k$$与 $$ σ_k$$ ​表示 $$ I_i$$ 在窗口内的均值、标准差； $$∣w∣$$ 表示窗口内像素块的总数 \) ② 结果 $$q_i = \sum_{j}{W_{ij}(I)*p_j}$$   \(q、I、p分表表示输出图像、引导图像和输入图像 ，i、j 分别表示图像中像素点的索引。权重 W 仅与引导图像 I 有关，而在双边滤波中权重 W 由输入图像自身决定。\)
-3. **代码**：时间复杂度O\(N\)，当 r 与 ϵ 越大，图像被平滑的程度越大。算法框架中：r是窗口半径， $$f_{mean}(I,r)$$ 表示在\(r, r\)窗口对图像做均值滤波。大佬博客：[我跳](https://blog.csdn.net/u013921430/article/details/99695647)
+#### **1. 定义**
+
+　　引导滤波的思想用一张引导图像产生权重，从而对输入图像进行处理。引导滤波除了可以用于图像平滑，还可以用于HDR压缩、细节增强、图像去雾、联合上采样等图像处理任务。引导滤波中空间域的贡献自然取决于窗口的大小，即由参数 r 决定。而标准差则是评判颜色差异性的参数，窗口中标准差越大，说明局部的像素相似性越差。
+
+#### **2. 公式：**[【图像处理】引导滤波](https://blog.csdn.net/u013921430/article/details/99695647)
+
+1. **权重** $$W_{ij}(i,j) = \frac{1}{|ω|^2} \sum_{k:(i,j)\in ω_k} (1+ \frac{(I_i-μ_k)(I_j-μ_k)}{σ_k^2+ϵ})$$   \(局部窗口 $$ω_k$$ ；ϵ是 $$L_2$$ 范数正则化系数，防止$$a_k$$ ​过大； $$μ_k$$与 $$ σ_k$$ ​表示 $$ I_i$$ 在窗口内的均值、标准差； $$∣w∣$$ 表示窗口内像素块的总数 \)
+2. **结果** $$q_i = \sum_{j}{W_{ij}(I)*p_j}$$   \(q、I、p分表表示输出图像、引导图像和输入图像 ，i、j 分别表示图像中像素点的索引。权重 W 仅与引导图像 I 有关，而在双边滤波中权重 W 由输入图像自身决定。\)
+
+#### **3. 代码1\(引导滤波\)**：
+
+　　时间复杂度O\(N\)，当 r 与 ϵ 越大，图像被平滑的程度越大。伪代码中：r是窗口半径， $$f_{mean}(I,r)$$ 表示在\(r, r\)窗口对图像做均值滤波。大佬博客：[我跳](https://blog.csdn.net/u013921430/article/details/99695647)
 
 ![&#x56FE;1 GF&#x7B97;&#x6CD5;&#x6846;&#x67B6;](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/GF.png)
 
@@ -148,35 +157,22 @@ def my_guidedFilter_oneChannel(srcImg, guidedImg, rad=13, eps=0.1):
     srcImg = srcImg/255.0
     guidedImg = guidedImg/255.0
     img_shape = np.shape(srcImg)#查看矩阵或者数组的维数。
-    # 求引导图像和输入图像的均值图,创建0矩阵
-    dstImg = np.zeros(img_shape, dtype=float)
     
-    P_mean = np.zeros(img_shape, dtype=float)
-    I_mean = np.zeros(img_shape, dtype=float)
-    I_square_mean = np.zeros(img_shape, dtype=float)
-    I_mul_P_mean = np.zeros(img_shape, dtype=float)
-    var_I = np.zeros(img_shape, dtype=float)
-    cov_I_P = np.zeros(img_shape, dtype=float)
-    
-    a = np.zeros(img_shape, dtype=float)
-    b = np.zeros(img_shape, dtype=float)
-    a_mean = np.zeros(img_shape, dtype=float)
-    b_mean = np.zeros(img_shape, dtype=float)
     # 在(rad, rad)窗口的内对图像做均值滤波。
-    P_mean = cv2.boxFilter(srcImg, -1, (rad, rad), normalize=True) 
-    I_mean = cv2.boxFilter(guidedImg,-1, (rad, rad), normalize=True) 
+    P_mean = cv2.boxFilter(srcImg, -1, (rad, rad), normalize=True) # p的均值平滑
+    I_mean = cv2.boxFilter(guidedImg,-1, (rad, rad), normalize=True) # I的均值平滑
 
-    I_square_mean = cv2.boxFilter(np.multiply(guidedImg, guidedImg), -1, (rad, rad), normalize=True) 
-    I_mul_P_mean = cv2.boxFilter(np.multiply(srcImg, guidedImg), -1, (rad, rad), normalize=True)
+    I_square_mean = cv2.boxFilter(np.multiply(guidedImg, guidedImg), -1, (rad, rad), normalize=True) #I*I的均值平滑
+    I_mul_P_mean = cv2.boxFilter(np.multiply(srcImg, guidedImg), -1, (rad, rad), normalize=True)# I*p的均值平滑
     
-    vvar_I = I_square_mean-np.multiply(I_mean,I_mean)
-    cov_I_P = I_mul_P_mean-np.multiply(I_mean,P_mean)
+    var_I = I_square_mean-np.multiply(I_mean,I_mean)# 方差
+    cov_I_P = I_mul_P_mean-np.multiply(I_mean,P_mean)# 协方差
     
-    a = cov_I_P/(var_I+eps)
-    b = P_mean-np.multiply(a,I_mean)
+    a = cov_I_P/(var_I+eps)# 相关因子a
+    b = P_mean-np.multiply(a,I_mean)# 相关因子b
     
-    a_mean = cv2.boxFilter(a, -1, (rad, rad), normalize=True) 
-    b_mean = cv2.boxFilter(b, -1, (rad, rad), normalize=True) 
+    a_mean = cv2.boxFilter(a, -1, (rad, rad), normalize=True) # 对a进行均值平滑
+    b_mean = cv2.boxFilter(b, -1, (rad, rad), normalize=True)  # 对b进行均值平滑
     
     dstImg = np.multiply(a_mean,guidedImg)+b_mean
     
@@ -217,6 +213,92 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+#### 4. 代码2\(快速导向滤波\)
+
+　　****通过下采样减少像素点，计算mean\_a & mean\_b后进行上采样恢复到原有的尺寸大小。假设缩放比例为s,那么缩小后像素点的个数为 $$\frac {N}{s^2}$$ ，那么时间复杂度变为 $$O(\frac {N}{s^2})$$ 。伪代码中：fmean代表均值平滑，fsubsample代表图像下采样即缩小图像，fupsample代表图片上采样即放大图像，s为缩小系数。参考：[我跳](https://blog.csdn.net/wsp_1138886114/article/details/84228939?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
+
+![&#x56FE;2 FGF&#x7B97;&#x6CD5;&#x6846;&#x67B6;](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/FGF.png)
+
+```python
+# -*- coding: utf-8 -*-
+"""
+@First_author: SongpingWangSongpingWangs
+@Second_author: Dragon Liu
+Operating environment: Python 3.7.1
+lib:  opencv-python
+Date: 2020/3/26
+"""
+import cv2
+import numpy as np
+
+def guideFilter(I, p, winSize, eps, s):
+    # 输入图像的高、宽
+    h, w = I.shape[:2]
+
+    # 缩小图像
+    size = (int(round(w * s)), int(round(h * s)))
+    small_I = cv2.resize(I, size, interpolation=cv2.INTER_CUBIC)
+    small_p = cv2.resize(I, size, interpolation=cv2.INTER_CUBIC)
+
+    # 缩小滑动窗口
+    X = winSize[0]
+    small_winSize = (int(round(X * s)), int(round(X * s)))
+
+    # I的均值平滑 p的均值平滑
+    mean_small_I = cv2.blur(small_I, small_winSize)
+    mean_small_p = cv2.blur(small_p, small_winSize)
+
+    # I*I和I*p的均值平滑
+    mean_small_II = cv2.blur(small_I * small_I, small_winSize)
+    mean_small_Ip = cv2.blur(small_I * small_p, small_winSize)
+
+    # 方差、协方差
+    var_small_I = mean_small_II - mean_small_I * mean_small_I
+    cov_small_Ip = mean_small_Ip - mean_small_I * mean_small_p
+
+    small_a = cov_small_Ip / (var_small_I + eps)
+    small_b = mean_small_p - small_a * mean_small_I
+
+    # 对a、b进行均值平滑
+    mean_small_a = cv2.blur(small_a, small_winSize)
+    mean_small_b = cv2.blur(small_b, small_winSize)
+
+    # 放大
+    size1 = (w, h)
+    mean_a = cv2.resize(mean_small_a, size1, interpolation=cv2.INTER_LINEAR)
+    mean_b = cv2.resize(mean_small_b, size1, interpolation=cv2.INTER_LINEAR)
+
+    q = mean_a * I + mean_b
+
+    return q
+    
+if __name__ == '__main__':
+    eps = 0.01
+    winSize = (16,16)       #类似卷积核（数字越大，磨皮效果越好）
+    image = cv2.imread(r'02.png', cv2.IMREAD_ANYCOLOR)
+    image = cv2.resize(image,None,fx=0.8,fy=0.8,interpolation=cv2.INTER_CUBIC)
+    I = image/255.0       #将图像归一化
+    p =I
+    s = 3 #步长
+    guideFilter_img = guideFilter(I, p, winSize, eps,s)
+
+    # 保存导向滤波结果
+    guideFilter_img = guideFilter_img  * 255         #(0,1)->(0,255)
+    guideFilter_img[guideFilter_img  > 255] = 255    #防止像素溢出
+    guideFilter_img = np.round(guideFilter_img )
+    guideFilter_img = guideFilter_img.astype(np.uint8)
+    cv2.imshow("image",image)
+    cv2.imshow("winSize_16", guideFilter_img )
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+```
+
+
+
+
+
+　
 
 
 
