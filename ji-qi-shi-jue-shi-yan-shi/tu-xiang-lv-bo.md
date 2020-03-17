@@ -8,7 +8,7 @@
 4. **种类**：低通滤波器可以消除噪声、模糊化，高通滤波器可以提取边缘。[白话文讲计算机视觉-第三讲-滤波器](https://blog.csdn.net/u013631121/article/details/80444602?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
 5. **作用**：图像滤波可以更改或者增强图像。通过滤波，可以强调一些特征或者去除图像中一些不需要的部分。滤波是一个邻域操作算子，利用给定像素周围的像素的值决定此像素的最终的输出值。常见的应用包括去噪、图像增强、检测边缘、检测角点、模板匹配等。
 
-## 算法
+## 非学习类型算法
 
 ### 0x01 均值滤波
 
@@ -38,7 +38,7 @@
 @author: Dragon Liu
 Operating environment: Python 3.7.1
 lib:  opencv-python
-Date: 2020/3/26
+Date: 2020/3/16
 """
 #导入库
 import cv2  
@@ -63,7 +63,8 @@ img_Guassian = cv2.GaussianBlur(source, (5,5), 0)
 
 
 #显示图形
-titles = ['Source Image', 'BoxFilter Image', 'Blur Image', 'Median Image', 'Guassian Image']  
+titles = ['Source Image', 'BoxFilter Image', 'Blur Image', 
+         'Median Image', 'Guassian Image']  
 images = [source, img_box, img_blur, img_Guassian, img_median]  
 for i in range(5):  
    plt.subplot(2, 3, i+1), plt.imshow(images[i], 'gray')  
@@ -78,7 +79,7 @@ plt.show()
 
 1. **定义**：高斯滤波只考虑了周边点与中心点的空间距离来计算得到权重，会模糊掉边缘。在高斯滤波的基础上加入了像素值\(灰度\)权重项，也就是说既要考虑距离因素，也要考虑像素值差异的影响，像素值越相近，权重越大。参考：[双边滤波详解](http://www.360doc.com/content/17/0306/14/28838452_634420847.shtml)、[【图像处理】——双边滤波](https://blog.csdn.net/u013921430/article/details/84532068)
 2. **公式：** 像素值权重     $$G_r= exp(-{\frac{||I_p-I_q||^2}{2σ^2_r}})$$  空间距离权重  $$G_s= exp(-{\frac{||p-q||^2}{2σ^2_s}})$$  滤波窗口内每个像素值的权重和 $$W(q) = \sum_{p\in S} G_s(p)G_r(p)$$ ---用于权重的归一化 滤波结果： $$BF = \frac {1}{W_q}\sum_{p\in S} G_s(p)G_r(p)*I_p$$ 
-3. **代码**：OpenCV在Python中双边滤波函数是**cv2.bilateralFilter\(src, d, sigmaColor, sigmaSpace）**其中，src是原图片，d是领域的直径，sigmaColor和sigmaSpace是灰度值相似性高斯函数标准差和空间高斯函数标准差。时间复杂度 $$O(Nr^2)$$ 
+3. **代码**：OpenCV在Python中双边滤波函数是**cv2.bilateralFilter\(src, d, sigmaColor, sigmaSpace）**时间复杂度 $$O(Nr^2)$$  **① s**rc是输入图像； ② d是在过滤期间使用的每个像素邻域的直径，如果输入d非0，则sigmaSpace由d计算得出，如果sigmaColor没输入，则sigmaColor由sigmaSpace计算得出； ③ sigmaColor是灰度值相似性高斯函数标准差，色彩空间的标准方差，一般尽可能大， 较大的参数值意味着像素邻域内较远的颜色会混合在一起， 从而产生更大面积的半相等颜色； ④ sigmaSpace是空间高斯函数标准差，坐标空间的标准方差\(像素单位\)，一般尽可能小。 参数值越大意味着只要它们的颜色足够接近，越远的像素都会相互影响。 当d &gt; 0时，它指定邻域大小而不考虑sigmaSpace。 否则，d与sigmaSpace成正比。
 
 ```python
 #encoding:utf-8
@@ -86,7 +87,7 @@ plt.show()
 @author: Dragon Liu
 Operating environment: Python 3.7.1
 lib:  opencv-python
-Date: 2020/3/26
+Date: 2020/3/16
 """
 #导入库
 import cv2  
@@ -113,13 +114,304 @@ plt.show()
 
 ### 0x06  引导滤波 -- **边缘保护滤波**
 
-1. **定义**：引导滤波的思想用一张引导图像产生权重，从而对输入图像进行处理。引导滤波除了可以用于图像平滑，还可以用于HDR压缩、细节增强、图像去雾、联合上采样等图像处理任务。引导滤波中空间域的贡献自然取决于窗口的大小，即由参数 r 决定。而标准差则是评判颜色差异性的参数，窗口中标准差越大，说明局部的像素相似性越差。
-2. **公式：**[【图像处理】引导滤波](https://blog.csdn.net/u013921430/article/details/99695647) ① 权重 $$W_{ij}(i,j) = \frac{1}{|ω|^2} \sum_{k:(i,j)\in ω_k} (1+ \frac{(I_i-μ_k)(I_j-μ_k)}{σ_k^2+ϵ})$$   \(局部窗口 $$ω_k$$ ；ϵ是 $$L_2$$ 范数正则化系数，防止$$a_k$$ ​过大； $$μ_k$$与 $$ σ_k$$ ​表示 $$ I_i$$ 在窗口内的均值、标准差； $$∣w∣$$ 表示窗口内像素块的总数 \) ② 结果 $$q_i = \sum_{j}{W_{ij}(I)*p_j}$$   \(q、I、p分表表示输出图像、引导图像和输入图像 ，i、j 分别表示图像中像素点的索引。权重 W 仅与引导图像 I 有关，而在双边滤波中权重 W 由输入图像自身决定。\)
-3. **代码**：时间复杂度O\(N\)，当 r 与 ϵ 越大，图像被平滑的程度越大。大佬博客：[我跳](https://blog.csdn.net/u013921430/article/details/99695647)
+#### **1. 定义**
+
+　　引导滤波的思想用一张引导图像产生权重，从而对输入图像进行处理。引导滤波除了可以用于图像平滑，还可以用于HDR压缩、细节增强、图像去雾、联合上采样等图像处理任务。引导滤波中空间域的贡献自然取决于窗口的大小，即由参数 r 决定。而标准差则是评判颜色差异性的参数，窗口中标准差越大，说明局部的像素相似性越差。
+
+#### **2. 公式：**[【图像处理】引导滤波](https://blog.csdn.net/u013921430/article/details/99695647)
+
+1. **权重** $$W_{ij}(i,j) = \frac{1}{|ω|^2} \sum_{k:(i,j)\in ω_k} (1+ \frac{(I_i-μ_k)(I_j-μ_k)}{σ_k^2+ϵ})$$   \(局部窗口 $$ω_k$$ ；ϵ是 $$L_2$$ 范数正则化系数，防止$$a_k$$ ​过大； $$μ_k$$与 $$ σ_k$$ ​表示 $$ I_i$$ 在窗口内的均值、标准差； $$∣w∣$$ 表示窗口内像素块的总数 \)
+2. **结果** $$q_i = \sum_{j}{W_{ij}(I)*p_j}$$   \(q、I、p分表表示输出图像、引导图像和输入图像 ，i、j 分别表示图像中像素点的索引。权重 W 仅与引导图像 I 有关，而在双边滤波中权重 W 由输入图像自身决定。\)
+
+#### **3. 代码1\(引导滤波\)**：
+
+　　第一个代码块是手写实现引导滤波。时间复杂度O\(N\)，当 r 与 ϵ 越大，图像被平滑的程度越大。伪代码中：r是窗口半径， $$f_{mean}(I,r)$$ 表示在\(r, r\)窗口对图像做均值滤波。大佬博客：[我跳](https://blog.csdn.net/u013921430/article/details/99695647)   
+　　第二个代码块是使用的现有库。参考：[我跳](https://jinzhangyu.github.io/2018/09/06/2018-09-06-OpenCV-Python%E6%95%99%E7%A8%8B-16-%E5%B9%B3%E6%BB%91%E5%9B%BE%E5%83%8F-3/)
+
+![&#x56FE;1 GF&#x7B97;&#x6CD5;&#x6846;&#x67B6;](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/GF.png)
 
 ```python
+# -*- coding: utf-8 -*-
+"""
+@First_author: 不用先生
+@Second_author: Dragon Liu
+Operating environment: Python 3.7.1
+lib:  opencv-python
+Date: 2020/3/16
+"""
 
+import cv2
+import numpy as np
+
+input_fn = '03.png'
+
+# 函数名：my_guidedFilter_oneChannel
+# 函数功能：用于单通道图像（灰度图）的引导滤波函数；
+# 参数：srcImg：输入图像，为单通道图像；
+# 参数：guideImg：引导图像，为单通道图像，尺寸与输入图像一致；
+# 参数：rad：滤波器大小r，应该保证为奇数，默认值为9；
+# 参数：eps：防止a过大的正则化参数ϵ，
+# 返回：dstImg：输出图像，尺寸、通道数与输入图像吻合；
+def my_guidedFilter_oneChannel(srcImg, guidedImg, rad=13, eps=0.1):
+
+    # 转换数值类型，并归一化
+    srcImg = srcImg/255.0
+    guidedImg = guidedImg/255.0
+    img_shape = np.shape(srcImg)#查看矩阵或者数组的维数。
+    
+    # 在(rad, rad)窗口的内对图像做均值滤波。
+    P_mean = cv2.boxFilter(srcImg, -1, (rad, rad), normalize=True) # p的均值平滑
+    I_mean = cv2.boxFilter(guidedImg,-1, (rad, rad), normalize=True) # I的均值平滑
+
+    I_square_mean = cv2.boxFilter(np.multiply(guidedImg, guidedImg), -1, (rad, rad), normalize=True) #I*I的均值平滑
+    I_mul_P_mean = cv2.boxFilter(np.multiply(srcImg, guidedImg), -1, (rad, rad), normalize=True)# I*p的均值平滑
+    
+    var_I = I_square_mean-np.multiply(I_mean,I_mean)# 方差
+    cov_I_P = I_mul_P_mean-np.multiply(I_mean,P_mean)# 协方差
+    
+    a = cov_I_P/(var_I+eps)# 相关因子a
+    b = P_mean-np.multiply(a,I_mean)# 相关因子b
+    
+    a_mean = cv2.boxFilter(a, -1, (rad, rad), normalize=True) # 对a进行均值平滑
+    b_mean = cv2.boxFilter(b, -1, (rad, rad), normalize=True)  # 对b进行均值平滑
+    
+    dstImg = np.multiply(a_mean,guidedImg)+b_mean
+    
+    return dstImg*255.0
+    
+# 函数名：my_guidedFilter_threeChannel
+# 函数功能：用于三通道图像（RGB彩色图）的引导滤波函数；
+# 参数：srcImg：输入图像，为三通道图像；
+# 参数：guideImg：引导图像，为三通道图像，尺寸与输入图像一致；
+# 参数：rad：滤波器大小r，应该保证为奇数，默认值为9；
+# 参数：eps：防止a过大的正则化参数ϵ，
+# 返回：dstImg：输出图像，尺寸、通道数与输入图像吻合；
+def my_guidedFilter_threeChannel(srcImg, guidedImg, rad=9, eps=0.01):
+    
+    img_shape = np.shape(srcImg)
+
+    dstImg = np.zeros(img_shape, dtype=float)
+
+    for ind in range(0,img_shape[2]):
+        dstImg[:,:,ind] = my_guidedFilter_oneChannel(srcImg[:,:,ind],
+              guidedImg[:,:,ind], rad, eps)
+    
+    dstImg = dstImg.astype(np.uint8)
+    
+    return dstImg
+
+
+def main():
+    img = cv2.imread(input_fn)#读入图像
+    print( np.shape(img) )
+
+    dstimg = my_guidedFilter_threeChannel(img, img, 9 , 0.01)#输入图像作为自身的引导图
+    print( np.shape(dstimg) )
+    # cv2.imwrite('output.jpg',dstimg)
+    cv2.imshow('output', dstimg)
+    cv2.waitKey(0)
+    
+if __name__ == '__main__':
+    main()
 ```
+
+```python
+# -*- coding: utf-8 -*-
+"""
+@First_author: Jin ZhangYu
+@Second_author: Dragon Liu
+Operating environment: Python 3.7.1
+lib:  opencv-contrib-python
+Date: 2020/3/16
+"""
+# 导入库
+import argparse
+import cv2
+import matplotlib.pyplot as plt
+import skimage
+import numpy as np
+
+# 构造参数解析器
+# ap = argparse.ArgumentParser()
+# ap.add_argument("-H:\project_work\Machine_Vision_Lab\thesis\Gaussian\code", "--02.png", required=True, help = "Path to the image")
+# args = vars(ap.parse_args())
+
+# 加载图像并显示
+input_fn = '02.png'
+# img = cv2.imread(args["image"],1)
+img = cv2.imread(input_fn)
+img = img[:,:,::-1]
+guide = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
+# 进行导向滤波
+dst1 = cv2.ximgproc.guidedFilter(
+            guide=guide, src=img, radius=16, eps=50, dDepth=-1)
+dst2 = cv2.ximgproc.guidedFilter(
+            guide=guide, src=img, radius=16, eps=200, dDepth=-1)
+dst3 = cv2.ximgproc.guidedFilter(
+            guide=guide, src=img, radius=16, eps=1000, dDepth=-1)
+
+# 绘制图片
+images = [img,[dst1,dst2,dst3]]
+titles =    [
+                'Original',
+                ['Guided Filter eps=50','Guided Filter eps=200','Guided Filter eps=1000']
+            ]
+
+# 绘制原图
+plt.figure(figsize=(9,4))
+
+plt.subplot(2, 3, 2),plt.imshow(images[0])
+plt.title(titles[0], fontsize=10),plt.xticks([]), plt.yticks([])
+
+plt.subplot(2, 3, 4),plt.imshow(images[1][0])
+plt.title(titles[1][0], fontsize=10),plt.xticks([]), plt.yticks([])
+
+plt.subplot(2, 3, 5),plt.imshow(images[1][1])
+plt.title(titles[1][1], fontsize=10),plt.xticks([]), plt.yticks([])
+
+plt.subplot(2, 3, 6),plt.imshow(images[1][2])
+plt.title(titles[1][2], fontsize=10),plt.xticks([]), plt.yticks([])
+
+# plt.savefig('1_out.png', transparent=True, dpi=300, pad_inches = 0)
+plt.show()
+```
+
+#### 4. 代码2\(快速导向滤波\)
+
+　　****通过下采样减少像素点，计算mean\_a & mean\_b后进行上采样恢复到原有的尺寸大小。假设缩放比例为s,那么缩小后像素点的个数为 $$\frac {N}{s^2}$$ ，那么时间复杂度变为 $$O(\frac {N}{s^2})$$ 。伪代码中：fmean代表均值平滑，fsubsample代表图像下采样即缩小图像，fupsample代表图片上采样即放大图像，s为缩小系数。参考：[我跳](https://blog.csdn.net/wsp_1138886114/article/details/84228939?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
+
+![&#x56FE;2 FGF&#x7B97;&#x6CD5;&#x6846;&#x67B6;](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/FGF.png)
+
+```python
+# -*- coding: utf-8 -*-
+"""
+@First_author: SongpingWangSongpingWangs
+@Second_author: Dragon Liu
+Operating environment: Python 3.7.1
+lib:  opencv-python
+Date: 2020/3/16
+"""
+import cv2
+import numpy as np
+
+def guideFilter(I, p, winSize, eps, s):
+    # 输入图像的高、宽
+    h, w = I.shape[:2]
+
+    # 缩小图像
+    size = (int(round(w * s)), int(round(h * s)))
+    small_I = cv2.resize(I, size, interpolation=cv2.INTER_CUBIC)
+    small_p = cv2.resize(I, size, interpolation=cv2.INTER_CUBIC)
+
+    # 缩小滑动窗口
+    X = winSize[0]
+    small_winSize = (int(round(X * s)), int(round(X * s)))
+
+    # I的均值平滑 p的均值平滑
+    mean_small_I = cv2.blur(small_I, small_winSize)
+    mean_small_p = cv2.blur(small_p, small_winSize)
+
+    # I*I和I*p的均值平滑
+    mean_small_II = cv2.blur(small_I * small_I, small_winSize)
+    mean_small_Ip = cv2.blur(small_I * small_p, small_winSize)
+
+    # 方差、协方差
+    var_small_I = mean_small_II - mean_small_I * mean_small_I
+    cov_small_Ip = mean_small_Ip - mean_small_I * mean_small_p
+
+    small_a = cov_small_Ip / (var_small_I + eps)
+    small_b = mean_small_p - small_a * mean_small_I
+
+    # 对a、b进行均值平滑
+    mean_small_a = cv2.blur(small_a, small_winSize)
+    mean_small_b = cv2.blur(small_b, small_winSize)
+
+    # 放大
+    size1 = (w, h)
+    mean_a = cv2.resize(mean_small_a, size1, interpolation=cv2.INTER_LINEAR)
+    mean_b = cv2.resize(mean_small_b, size1, interpolation=cv2.INTER_LINEAR)
+
+    q = mean_a * I + mean_b
+
+    return q
+    
+if __name__ == '__main__':
+    eps = 0.01
+    winSize = (16,16)       #类似卷积核（数字越大，磨皮效果越好）
+    image = cv2.imread(r'02.png', cv2.IMREAD_ANYCOLOR)
+    image = cv2.resize(image,None,fx=0.8,fy=0.8,interpolation=cv2.INTER_CUBIC)
+    I = image/255.0       #将图像归一化
+    p =I
+    s = 3 #步长
+    guideFilter_img = guideFilter(I, p, winSize, eps,s)
+
+    # 保存导向滤波结果
+    guideFilter_img = guideFilter_img  * 255         #(0,1)->(0,255)
+    guideFilter_img[guideFilter_img  > 255] = 255    #防止像素溢出
+    guideFilter_img = np.round(guideFilter_img )
+    guideFilter_img = guideFilter_img.astype(np.uint8)
+    cv2.imshow("image",image)
+    cv2.imshow("winSize_16", guideFilter_img )
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+```
+
+### 0x07 高通滤波 -- 边缘检测/高反差保留
+
+1. **定义**：
+2. **代码**：使用的函数有：`cv2.Sobel()` , `cv2.Schar()` , `cv2.Laplacian()` Sobel, scharr其实是求一阶或者二阶导数。scharr是对Sobel的优化。 Laplacian是求二阶导数。cv2.Sobel\(\) 是一种带有方向过滤器。参考：[我跳](https://blog.csdn.net/wsp_1138886114/article/details/82872838?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
+
+```python
+# -*- coding: utf-8 -*-
+"""
+@First_author: SongpingWang
+@Second_author: Dragon Liu
+Operating environment: Python 3.7.1
+lib:  opencv-python
+Date: 2020/3/16
+"""
+
+"""
+dst = cv2.Sobel(src, ddepth, dx, dy[, dst[, ksize[, scale[, delta[, borderType]]]]])
+src:    需要处理的图像；
+ddepth: 图像的深度，-1表示采用的是与原图像相同的深度。 
+        目标图像的深度必须大于等于原图像的深度；
+dx和dy: 求导的阶数，0表示这个方向上没有求导，一般为0、1、2。
+
+dst     不用解释了；
+ksize： Sobel算子的大小，必须为1、3、5、7。  ksize=-1时，会用3x3的Scharr滤波器，
+        它的效果要比3x3的Sobel滤波器要好 
+scale： 是缩放导数的比例常数，默认没有伸缩系数；
+delta： 是一个可选的增量，将会加到最终的dst中， 默认情况下没有额外的值加到dst中
+borderType： 是判断图像边界的模式。这个参数默认值为cv2.BORDER_DEFAULT。
+
+"""
+
+import cv2
+
+img=cv2.imread('02.png',cv2.IMREAD_COLOR)
+x=cv2.Sobel(img,cv2.CV_16S,1,0)
+y=cv2.Sobel(img,cv2.CV_16S,0,1)
+
+absx=cv2.convertScaleAbs(x)
+absy=cv2.convertScaleAbs(y)
+dist=cv2.addWeighted(absx,0.5,absy,0.5,0)
+
+cv2.imshow('original_img',img)
+cv2.imshow('y',absy)
+cv2.imshow('x',absx)
+cv2.imshow('dsit',dist)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+### 0x08 窗口感知的高斯引导滤波
+
+
+
+　
 
 
 
