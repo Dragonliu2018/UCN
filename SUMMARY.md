@@ -13,6 +13,7 @@
   * [第2章 数学预备知识](suan-fa-she-ji-yu-fen-xi/di-2-zhang-shu-xue-yu-bei-zhi-shi.md)
   * [第3章 数据结构](suan-fa-she-ji-yu-fen-xi/di-3-zhang-shu-ju-jie-gou.md)
   * [第4章 堆和不相交集数据结构](suan-fa-she-ji-yu-fen-xi/di-4-zhang-dui-he-bu-xiang-jiao-ji-shu-ju-jie-gou.md)
+  * [第5章 归纳法](suan-fa-she-ji-yu-fen-xi/di-5-zhang-gui-na-fa.md)
 * [毛泽东思想和中国特色社会主义理论体系概论](mao-ze-dong-si-xiang-he-zhong-guo-te-se-she-hui-zhu-yi-li-lun-ti-xi-gai-lun/README.md)
   * [第1章 毛泽东思想及其历史地位](mao-ze-dong-si-xiang-he-zhong-guo-te-se-she-hui-zhu-yi-li-lun-ti-xi-gai-lun/di-1-zhang-mao-ze-dong-si-xiang-ji-qi-li-shi-di-wei.md)
   * [第2章 新民主主义革命理论](mao-ze-dong-si-xiang-he-zhong-guo-te-se-she-hui-zhu-yi-li-lun-ti-xi-gai-lun/di-2-zhang-xin-min-zhu-zhu-yi-ge-ming-li-lun.md)
