@@ -29,6 +29,7 @@
     * [第6讲 计算机设备与环境安全——拓展及应用](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-2-dan-yuan-she-bei-yu-huan-jing-an-quan-zhi-shi/di-6-jiang-ji-suan-ji-she-bei-yu-huan-jing-an-quan-tuo-zhan-ji-ying-yong.md)
 * [机器视觉实验室](ji-qi-shi-jue-shi-yan-shi/README.md)
   * [准备工作](ji-qi-shi-jue-shi-yan-shi/zhun-bei-gong-zuo.md)
+  * [科技文刊](ji-qi-shi-jue-shi-yan-shi/ke-ji-wen-kan.md)
   * [图像滤波](ji-qi-shi-jue-shi-yan-shi/tu-xiang-lv-bo.md)
 * [Test](test.md)
 
