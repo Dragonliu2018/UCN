@@ -129,6 +129,8 @@ int DeleteMax( int H[] )
 }//DeleteMax 
 ```
 
+#### 7. HeapCreate：创建堆
+
 \*\*\*\*
 
 
