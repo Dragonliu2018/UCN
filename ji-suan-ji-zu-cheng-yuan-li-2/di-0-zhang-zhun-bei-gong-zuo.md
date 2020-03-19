@@ -13,7 +13,15 @@
 
 * git、github、gitlab工作流程：[阮大牛讲解](http://www.ruanyifeng.com/blog/2015/12/git-workflow.html)
 
-### 0x03 常用命令
+### 0x03 Git 工作区、暂存区和版本库
+
+![&#x56FE;2 Git &#x5DE5;&#x4F5C;&#x533A;&#x3001;&#x6682;&#x5B58;&#x533A;&#x548C;&#x7248;&#x672C;&#x5E93;](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-19_18-27-19.jpg)
+
+* **工作区：**就是你在电脑里能看到的目录。
+* **暂存区：**英文叫stage, 或index。一般存放在 ".git目录下" 下的index文件（.git/index）中，所以我们把暂存区有时也叫作索引（index）。
+* **版本库：**工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
+
+### 0x04 创建与基本操作
 
 #### **1. Git 配置**
 
@@ -66,15 +74,93 @@ git clone https://github.com/fsliurujie/test.git #--HTTPS协议
 * 命令4自己定义要新建的项目目录名称
 * git clone 时，可以所用不同的协议，包括 ssh, git, https 等，其中最常用的是 ssh，因为速度较快，还可以配置公钥免输入密码。
 
+#### 5. git status \(-s\) 
 
+* 显示你上次提交更新后的更改或者写入缓存的改动\(获得简短的结果输出\)；
+* 输出信息中：??：未添加到缓存；A：已加入到缓存；AM：这个文件在我们将它添加到缓存之后又有改动
 
+#### 6. git diff
 
+* git diff 来查看执行 git status 的结果的详细信息。
+* 尚未缓存的改动：**git diff**    
+* 查看已缓存的改动： **git diff --cached**
+* 查看已缓存的与未缓存的所有改动：**git diff HEAD**
+* 显示摘要而非整个 diff：**git diff --stat**
 
+#### 7. git commit
 
+* 将缓存区内容添加到仓库中
+* -m 选项以在命令行中提供提交注释。
+* -a 选项跳过git add 提交缓存的流程
 
+#### 8. git reset HEAD &lt;file&gt;
 
+* 取消已缓存的内容
 
+#### 9. git rm &lt;file&gt;
 
+```bash
+git rm <file>
+git rm -f <file>
+git rm --cached <file>
+git rm –r * #删除该目录下的所有文件和子目录
+```
 
+### 
 
+* 移除某个文件\(从已跟踪文件清单中移除，然后提交\)
+* 如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项 -f
+* 把文件从暂存区域移除，但仍然希望保留在当前工作目录中，换句话说，仅是从跟踪清单中删除，使用 --cached 
+
+#### 10. git mv
+
+* 移动或重命名一个文件、目录、软连接
+* git mv &lt;source file&gt; &lt;new file&gt;
+
+### 0x05 Git 分支管理
+
+```bash
+git branch (branchname) #创建分支
+git checkout (branchname) #切换分支
+git checkout -b (branchname)#创建新分支并立即切换到该分支下
+git merge <change_site>#合并某分支到master
+git branch # 列出本地分支
+git branch -d (branchname) #删除分支
+```
+
+### 0x06 Git 查看提交历史
+
+```bash
+git log #列出历史提交记录
+git log --oneline #查看历史记录的简洁的版本
+git log --graph #查看历史中什么时候出现了分支、合并
+git log --reverse #逆向显示所有日志
+git log --author=<name>#查找指定用户的提交日志
+git log --oneline --before={3.weeks.ago} --after={2010-04-18}#指定时间段
+git log --decorate #可查看git标签
+```
+
+### 0x07 Git 标签
+
+```bash
+git tag -a v1.0 #创建带注解的标签
+git tag -a v0.9 85fc7e7#追加标签
+git tag #查看标签
+git tag -a <tagname> -m "runoob.com标签"#指定标签信息命令
+git tag -d <tagname> #删除标签
+```
+
+### 0x08 Git 远程仓库\(Github\)
+
+```bash
+git remote add [shortname] [url] #添加远程仓库
+ssh-keygen -t rsa -C "youremail@example.com" #生成 SSH Key
+ssh -T git@github.com #验证ssh配置是否成功
+git remote #查看当前配置有哪些远程仓库
+git remote -v #每个别名的实际链接地址
+git fetch [alias] #查看是否有更新数据，从远程仓库下载新分支与数据
+git merge [alias]/[branch] #从远端仓库提取数据并尝试合并到当前分支
+git push [alias] [branch] #推送你的新分支与数据到某个远端仓库
+git remote rm [别名] #删除远程仓库
+```
 
