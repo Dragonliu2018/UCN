@@ -518,3 +518,129 @@ subplot(1,2,1), imshow(source), title('Source image');
 subplot(1,2,2), imshow(target), title('WGGF image');
 ```
 
+```python
+#encoding:utf-8
+"""
+@author: Dragon Liu
+Operating environment: Python 3.7.1
+lib:  opencv-python
+Date: 2020/3/22
+"""
+#导入库
+import math
+import cv2  
+import numpy as np  
+import matplotlib.pyplot as plt
+
+# 高斯空间核函数
+def gr(px, py, qx, qy, dr):
+
+   nut = math.exp( - ( pow((qx - px), 2) + pow((qy - py), 2) ) ) #分子
+   det = 2 * pow(dr, 2) #分母
+   result =  nut / det  
+   return result
+
+# 高斯频域核函数
+def gzeta(guide_img, div, px, py, qx, qy, dzeta):
+	
+   guide_img = guide_img 
+   nut = math.exp( - ( pow( ( guide_img[px, py, div] - guide_img[qx, qy, div] ), 2 ) ) ) #分子
+   det = 2 * pow(dzeta, 2)
+   result =  nut / det
+   return result
+
+# 求解高斯空间域滤波，返回指定像素点(p)的输出
+def GS(image, r, dr, px, py, div):
+
+   Upsilon = 0 #τ，归一化系数
+   output = 0
+   for i in range(r, -(r+1), -1):# 以p为中心的窗口半径为2r+1的区域
+      for j in range(r, -(r+1), -1):
+         Upsilon = Upsilon + gr(px, py, px + i, py + j, dr)
+         output = output + gr(px, py, px + i, py + j, dr) * image[px + i,py + j,div]
+   
+   output = output / Upsilon 
+   return output
+
+#求解指定窗口(3*3)的中值
+def medbox(img, x, y, div, length, width):
+   
+   nums = []
+   length = width = 3
+   for i in range(math.floor(length/2), -math.floor(length/2)-1, -1):
+      for j in range(math.floor(width/2), -math.floor(width/2)-1, -1):
+         nums.append( img[x+i, y+j, div])
+
+   return np.median(nums)
+
+#窗口感知的高斯引导滤波
+#求解WGGF在每个像素点p的输出并返回
+def WGGF(guide_img,source,r,dzeta,px,py,div, lam):
+   
+   guide_img = guide_img 
+   source = source  
+   Upsilon = 0 #τ，归一化系数
+   output = 0
+   flag = 0
+   for i in range(r, -(r+1), -1):# 以p为中心的窗口半径为2r+1的区域
+      for j in range(r, -(r+1), -1):
+         temp = abs( guide_img[px + i, py + 1, div] - guide_img[px, py, div] )
+         if temp <= lam:
+               flag = flag + 1
+               Upsilon = Upsilon + gzeta(guide_img, div, px, py, px+i, py+j, dzeta)
+               output = output + guide_img[px + i,py + j,div] * gzeta(guide_img, div, px, py, px+i, py+j, dzeta)
+
+   if flag == 1 or Upsilon == 0: #不满足窗口感知的要求，返回3*3窗口中的像素点中值
+      output = medbox( source, px, py, j, 3, 3 )
+   else: #满足条件
+      output = output / Upsilon 
+   return output
+
+# 主函数，测试
+def main():
+   #读取图片
+   img = cv2.imread('02.png', 1)
+   source = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+   source = source / 255.0
+   guide_img = source
+   
+   print(1.666)
+   #求解高斯引导滤波
+   [m ,n, div] = np.shape(source)#查看矩阵或者数组的维数。
+   r = 5 #窗口半径
+   dr = 0.5 #空域带宽
+   # 高斯滤波
+   guide_img = cv2.GaussianBlur(source, (r,r), dr)
+               
+   
+   print(2.666)
+   #求解WGGF
+   target = guide_img
+   r = 5 #窗口半径
+   dzeta = 0.1 #频域带宽
+   lam = 0.12 #λ为一选定的阈值 
+   num = 0
+   for k in range(div):
+      for i in range(m):
+         for j in range(n):
+               if i <= r or i >= m - r or j <= r or j >= n - r: #图片边界处理(引导像素)
+                  continue
+               else:
+                  target[i, j, k] = WGGF(guide_img, source, r, dzeta, i, j, k, lam)
+               num = num + 1
+               print(num)
+   print(3.666)
+   #显示图形
+   titles = ['Source Image', 'WGGF Image']  
+   images = [source*255.0, target*255.0]  
+   for i in range(2):  
+      plt.subplot(1, 2, i+1), plt.imshow(images[i], 'gray')  
+      plt.title(titles[i])  
+      plt.xticks([]),plt.yticks([]) #禁止输出坐标轴 
+   plt.show()  
+
+    
+if __name__ == '__main__':
+    main()
+```
+
