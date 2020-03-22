@@ -518,6 +518,8 @@ subplot(1,2,1), imshow(source), title('Source image');
 subplot(1,2,2), imshow(target), title('WGGF image');
 ```
 
+* **WGGF.py\(Bug\)**
+
 ```python
 #encoding:utf-8
 """
@@ -525,6 +527,7 @@ subplot(1,2,2), imshow(target), title('WGGF image');
 Operating environment: Python 3.7.1
 lib:  opencv-python
 Date: 2020/3/22
+BUG: 时间复杂度O(m*n*div*r*r)，不可行，另外存在img[]访问问题
 """
 #导入库
 import math

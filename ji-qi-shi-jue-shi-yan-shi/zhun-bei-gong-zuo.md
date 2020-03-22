@@ -21,5 +21,7 @@
 1. 官方文档：内有入门视频和进阶视频，[链接](https://ww2.mathworks.cn/help/index.html?s_tid=CRUX_lftnav)
 2. 无须编程基础的教程：[1-6讲](https://www.bilibili.com/video/av7081367?p=1)，[7-讲](https://www.bilibili.com/video/av9810059/)
 
+## 0x04 PS
 
+1. **图像纹理**：①[ PS中添加纹理图案](https://jingyan.baidu.com/article/7c6fb4283f057580642c90e7.html)   ②[ 图层添加纹理](https://www.bilibili.com/video/av84432956)
 
