@@ -196,10 +196,11 @@ int tsub_ok(int x, int y)
 
 ### 0x07 怎样比较两个整数的大小
 
-做减法以比较大小，规则：
+* 做减法以比较大小，规则：
+* unsigned：CF=0，大于：做减法未产生借位，则是前者大于等于后者
+* signed：OF = SF，大于：
 
-1. unsigned：CF=0，大于
-2. signed：OF = SF，大于
+![](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/TIM20200327001211.png)
 
 ## 问题讨论
 
