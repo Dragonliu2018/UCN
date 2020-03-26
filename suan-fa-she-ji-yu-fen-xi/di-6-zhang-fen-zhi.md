@@ -64,7 +64,7 @@ int binarysearch(int arr[], int low, int high, int val)
 
 ### k旋转数组的最大元素\(O\(logn\)\)
 
-**思路**：二分搜索，如果mid值比high值大，则搜前半段；否则搜后半段
+**思路**：二分搜索，如果mid值比low值大，则搜后半段；否则搜前半段。**\(求min用high，求max用low\)**
 
 ```c
 int binarysearch(int arr[], int low, int high)
