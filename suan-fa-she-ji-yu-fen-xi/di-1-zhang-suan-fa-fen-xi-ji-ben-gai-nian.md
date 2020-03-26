@@ -29,12 +29,12 @@ int BinarySearch(int x)//二分搜索
 
 ## 合并两个已排序的表
 
-* **代码**
+* **代码（bug）**
 
 ```cpp
 void merge(int a[], int p, int q, int r)
 {
-	int b[r-p+1];//辅助数组
+	int b[r-p+1];//辅助数组(数组大小与下标有问题)
 	int s, t, k;//三个下标指示 
 	s = p;
 	t = q + 1;
@@ -168,13 +168,4 @@ void bottumUpSort(int arr[], int n)
 ### 0x01 用 _Θ_ 符号表示下列函数：
 
 \(d\) $$\frac {n!} {2^n}+n^{\frac {n}{2}}：Θ(n^{\frac {n}{2}})$$ 
-
-\*\*\*\*
-
-  
-
-
-
-
-
 
