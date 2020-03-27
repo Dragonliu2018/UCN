@@ -376,5 +376,49 @@ int main()
 
 ![](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-27_13-27-28.jpg)
 
+### 0x0f 0.1的float型表示
 
+```c
+#include <stdio.h>
+
+int main()
+{
+	union{ //法1 
+		float x;
+		unsigned u;
+	}num={0.1};
+	
+	float y=0.1;//法2 
+	printf("%x\n", y);
+	printf("%x\n",num.u);
+	return 0;
+}
+```
+
+1. 《C primer plus》中关于%X的定义：使用十六进制数字0F的无符号十六进制整数（C primer plus第五版，p68）我的理解：%X要将值转换成\(unsigned\)int整数类型再来进行输出
+2. 法1使用union使得变量x和u共享内存，即u的机器码与x的一样，所以可输出0.1正确的机器码 0x3dcccccd
+3. 法2是实现从float类型转到\(unsigned\)int类型：float x\(0x3dcccccd\)先需要位扩展变成double类型，可得double x\(0x3fb99999a0000000\)，然后再转成\(unsigned\)int，位截断，丢弃高32位得\(unsigned\)int x \(0xa0000000\)。所以会输出 a0000000，显然不是0.1的机器码
+4. 综上，不能不用union，他会避免float或double向\(unsigned\)int类型转化。
+
+### 0x10 float到double的位扩展
+
+```c
+#include<stdio.h> 
+int main()
+{	
+	union  
+	{	
+		float x;
+ 		unsigned u;
+	}num={6.66};
+	double d1 = num.x;
+	double d2 = 6.66;
+ 	printf("float          ：#%x\n", num.u);//float机器码 
+ 	printf("double         ：#%llx\n", d2);//double机器码 
+ 	printf("double(位扩展) ：#%llx\n", d1);
+ 	return 0;
+}
+```
+
+* **猜测**：取对应double类型表示的前32位\(存在舍入运算\)，然后后面补0
 
