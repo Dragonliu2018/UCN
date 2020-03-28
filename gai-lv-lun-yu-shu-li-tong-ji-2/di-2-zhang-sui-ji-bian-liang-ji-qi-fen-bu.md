@@ -22,7 +22,7 @@
 ### **03. 泊松分布**
 
 * **定义**：若X的分布为 $$P(X=k) = \frac{λ^ke^{-λ}}{k!}$$ ，k=0, 1, 2 ... 其中λ&gt;0是常数，则称X服从参数为λ的泊松分布，记作 X~π\(λ\) 或 X~P\(λ\)
-* **公式：** $$\sum_{k=0}^{\infty}P(X=k) = \sum_{k=0}^{\infty}\frac{λ^ke^{-λ}}{k!} = e^{-λ}\sum_{k=0}^{\infty}\frac{λ^k}{k!} = 1$$  　　　  ****$$e^x = \sum_{k=0}^{\infty}\frac{x^k}{k!}$$ ****
+* **公式：** $$\sum_{k=0}^{\infty}P(X=k) = \sum_{k=0}^{\infty}\frac{λ^ke^{-λ}}{k!} = e^{-λ}\sum_{k=0}^{\infty}\frac{λ^k}{k!} = 1$$  　　　  ****$$e^x = \sum_{k=0}^{\infty}\frac{x^k}{k!}$$ ****[**泰勒级数**](https://zh.wikipedia.org/wiki/%E6%B3%B0%E5%8B%92%E7%BA%A7%E6%95%B0)\*\*\*\*
 * **应用**：某一地区一个时间间隔内发生的交通事故，一本书的印刷错误数等。
 * **泊松\(Poisson\)定理：**设随机变量序列{ $$X_n$$ }， $$X_n$$ ~ $$b(n, p_n)$$ ，则 $$\lim_{n \to +\infty}P(X_n=k)=\lim_{n \to +\infty} \begin{pmatrix} n \\ k\end{pmatrix}p^k(1-p)^{n-k} = \frac{λ^ke^{-λ}}{k!}$$，其中 $$np_n = λ>0$$ ，k为任一固定的非负整数 ①  在定理的条件下, 二项分布的极限分布是泊松分布 ② 当n\( $$n \geq 10$$ \)很大且p\( $$p\leq 0.01$$ \)又较小时， $$\begin{pmatrix} n \\ k\end{pmatrix}p^k(1-p)^{n-k}   \approx\frac{λ^ke^{-λ}}{k!}$$ ，其中 $$np = λ$$ 
 
