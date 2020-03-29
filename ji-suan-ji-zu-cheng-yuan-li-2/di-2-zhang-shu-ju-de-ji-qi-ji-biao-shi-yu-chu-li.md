@@ -389,8 +389,12 @@ int main()
 	}num={0.1};
 	
 	float y=0.1;//法2 
-	printf("%x\n", y);
-	printf("%x\n",num.u);
+	int integer = *(unsigned int *)(&y);//法3
+	int *ptr = (int*)&y;//法4
+	printf("%#x\n", y);
+	printf("%#x\n", num.u);
+	printf("%#x\n", integer);
+	printf("%#x\n", *ptr);
 	return 0;
 }
 ```
@@ -398,7 +402,7 @@ int main()
 1. 《C primer plus》中关于%X的定义：使用十六进制数字0F的无符号十六进制整数（C primer plus第五版，p68）我的理解：%X要将值转换成\(unsigned\)int整数类型再来进行输出
 2. 法1使用union使得变量x和u共享内存，即u的机器码与x的一样，所以可输出0.1正确的机器码 0x3dcccccd
 3. 法2是实现从float类型转到\(unsigned\)int类型：float x\(0x3dcccccd\)先需要位扩展变成double类型，可得double x\(0x3fb99999a0000000\)，然后再转成\(unsigned\)int，位截断，丢弃高32位得\(unsigned\)int x \(0xa0000000\)。所以会输出 a0000000，显然不是0.1的机器码
-4. 综上，不能不用union，他会避免float或double向\(unsigned\)int类型转化。
+4. 法3：利用指针指向float的机器码，问题关键在于不得使float或double直接转化为int。
 
 ### 0x10 float到double的位扩展
 
