@@ -38,5 +38,7 @@
   * [准备工作](ji-qi-shi-jue-shi-yan-shi/zhun-bei-gong-zuo.md)
   * [科技文刊](ji-qi-shi-jue-shi-yan-shi/ke-ji-wen-kan.md)
   * [图像滤波](ji-qi-shi-jue-shi-yan-shi/tu-xiang-lv-bo.md)
-* [Test](test.md)
+* [后记](test/README.md)
+  * [周报](test/zhou-bao.md)
+  * [年报](test/nian-bao.md)
 
