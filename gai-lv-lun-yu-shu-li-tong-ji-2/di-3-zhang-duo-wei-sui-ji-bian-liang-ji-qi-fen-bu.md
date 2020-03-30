@@ -29,22 +29,65 @@
 * **定义**：若 $$F(x,y)= \int_{-\infty}^y\int_{-\infty}^{x}f(u,v)dudv$$  ，则称 $$(X,Y)$$ 为连续型二维r.v.，其中非负函数 $$f(x,y) $$ 称为 $$(X,Y)$$ 的概率密度，或称为X和Y的联合概率密度
 * **性质**：
   * $$f(x,y)\geq 0$$ 
-  * $$ \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f(x,y)dxdy = F(+\infty, -\infty)=1$$ 
+  * $$ \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f(x,y)dxdy = F(+\infty, +\infty)=1$$ 
   * 设G是xoy平面上的一个区域，点\(x,y\)落在G内的概率为： $$ \int\int_{G}f(x,y)dxdy$$
   * 若f\(x, y\)在点\(x, y\)连续，则有 $$\frac{ ∂^2F(x,y)}{ ∂x∂y} = f(x, y)$$ 
 * **分布律转分布函数：** $$F(x,y)=\sum_{x_i\leq x,y_j\leq y}p_{ij}$$ ，即对一切满足 $$x_i\leq x,y_j\leq y$$  的i, j求和
 
 ## 0x02 边缘分布
 
+### 01. 边缘分布函数
 
+* 二维r.v.\(X,Y\)关于X的边缘分布函数： $$F_X(x) = P\left\{ X\leq x\right\}=P\left\{ X\leq x ,Y<+\infty \right\}=F(x,+\infty)$$ 
+* $$F_Y(x) = F(+\infty,y)$$ 
 
+### 02. 边缘分布律
 
+* X的分布律： $$P\left\{ X=x_i\right\}=\sum_{j=1}^{+\infty}p_{ij}=p_{i.},i=1,2,3...$$ 
+* Y的分布律： $$P\left\{ Y=y_j\right\}=\sum_{i=1}^{+\infty}p_{ij}=p_{.j},j=1,2,3...$$ 
+*  $$p_{i.}(i=1,2...)$$ 和 $$p_{.j}(j=1,2...)$$ 是 \(X, Y\) 关于 X 和关于 Y 的边缘分布律
 
-　
+### 03. 边缘概率密度
 
+* $$f_X(x) = \int_{-\infty}^{+\infty}f(x,y)dy$$ 
+* $$f_Y(y) = \int_{-\infty}^{+\infty}f(x,y)dx$$ 
+* 连续型二维r.v.的均匀分布： $$f(x,y)= \begin{cases}   \frac{1}{A}  ,  & {(x,y)\in G} \\         0, & \text{其他}         \end{cases}$$ 
+* 二维正态分布： $$(X,Y)\sim  N(μ_1,μ_2, σ^2_1, σ^2_2, ρ )$$ ，可得X，Y的边缘分布函数 $$X\sim (μ_1,σ^2_1) ,  Y\sim (μ_2,σ^2_2) $$ 
+* **注**: 由二维随机变量\(X,Y\)的概率分布\(X,Y\)的联合分布可唯一地确定X和Y的边缘分布, 反之, 若已知 X,Y的边缘分布, 并不一定能确定它们的联合分布
 
+## 0x03 条件分布
 
+### 01. 二维离散型r.v.
 
+　　设 $$p_{i.}>0,p_{.j}>0$$ ，则：
 
+* 在 $$Y = y_j$$ 的条件下r.v.X的条件分布律： $$P\left\{X=x_i|Y=y_j\right\}=\frac{P\left\{X=x_i, Y=y_j\right\}}{P\left\{Y=y_j\right\}}=\frac{p_{ij}}{p_{.j}},i=1,2,3...$$ 
+* 在 $$X = x_i$$ 的条件下r.v.Y的条件分布律： $$P\left\{Y=y_j \right|X=x_i\}=\frac{P\left\{X=x_i, Y=y_j\right\}}{P\left\{X=x_i\right\}}=\frac{p_{ij}}{p_{i.}},j=1,2,3...$$ 
 
+### 02. 二维连续型r.v.的条件分布
+
+* 在 Y = y 的条件下 X 的条件分布函数： $$F_{X|Y}(x|y)或P\left\{X\leq x|Y=y\right\}$$ 
+* $$F_{X|Y}(x|y) = \int_{-\infty}^{x}\frac{f(x,y)}{f_Y(y)} dx$$ 
+* 在条件 Y = y 下 X 的条件概率密度： $$f_{X|Y}(x|y) = \frac{f(x,y)}{f_Y(y)} $$ 
+
+## 0x04 相互独立的随机变量
+
+### 01. 定义
+
+　　设\(X, Y\) 为二位随机变量，若对于所有的 x，y，有 $$P\left\{ X\leq x, Y\leq y\right\} = P\left\{X\leq x\right\}*P\left\{Y\leq y\right\}$$ ，即 $$F(x,y)=F_X(x)*F_Y(y)$$ ，则称 X 和 Y 相互独立。
+
+### 02. 等价定义
+
+* 当 \(X, Y\) 为离散型r.v.时，X 和 Y 独立等价于 $$P\left\{ X=x_i,Y=y_j\right\} = P\left\{X=x_i\right\} *P\left\{Y=y_j\right\}, i.j=1,2,3...$$  
+* 当 \(X, Y\) 为连续型r.v.时，X 和 Y 独立等价于 $$f(x,y)=f_X(x)*f_Y(y)$$
+
+### 03. 命题
+
+* 设\(X, Y\)服从二维正态分布, 则X, Y相互独立的充要条件是 $$ρ=0$$ 
+
+### 04. 重要定理
+
+* 设 \(X1, X2, …, Xm\) 和 \(Y1, Y2, …  Yn\) 相互独立，则 Xi \(i=1,2, …,m\) 和 Yj \( j=1,2, …,n\)相互独立，又若h, g 是连续函数, 则 h\(X1, X2, …, Xm\) 和 g \(Y1, Y2, …  Yn\)  相互独立. 
+
+## 0x05 两个r.v.的函数的分布
 
