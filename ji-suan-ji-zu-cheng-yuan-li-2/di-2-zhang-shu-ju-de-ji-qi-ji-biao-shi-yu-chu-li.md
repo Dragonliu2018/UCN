@@ -244,11 +244,23 @@ int tsub_ok(int x, int y)
 
 ![](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-27_13-36-13.jpg)
 
+#### 05. 整数乘运算实现原理：加法和移位
+
+#### 06. 整数除运算溢出问题
+
+　　整数除法不会很难发生溢出，除了 ![-2^{n-1} / -1](https://math.jianshu.com/math?formula=-2%5E%7Bn-1%7D%20%2F%20-1)，会发生溢出外，其余的情况都不会溢出。因为**负数的个数**比**正数的个数**多了一个。而且 x 除 0 的结果无法用机器数字表示，但是浮点数就不一样了，浮点数能够用机器数表示无穷
+
+#### 07. 用移位实现整型变量除2的幂次：负整数纠偏
+
+#### 08. 尝试仅用位运算实现算术运算函数
+
 ## 浮点数的运算实现
 
 ### 0x01 浮点数加减过程
 
 ![](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-27_13-41-43.jpg)
+
+### 0x02浮点数加减运算过程（乘除运算不用对阶，其余步骤类似）
 
 ## 问题讨论
 
@@ -429,7 +441,7 @@ int main()
 
 * **float型符号位1位，阶码8位，尾数23位，double阶码11位，尾数52位，所以float扩展成double，应该取double的符号位1位+阶码11位+尾数23位，一共35位，但是考虑到有些情况有舍入，所以至少是34位。（float的精度只有23+1位尾数，所以扩展到double的时候尾数后面只能补0）**
 
-### **0x11 分组讨论**
+### **0x11 "int"型 double**
 
 ![](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-30_18-51-31.jpg)
 
@@ -437,4 +449,11 @@ int main()
 2. 永真，浮点数不满足结合律，但是此处的double是由int转化的，不存在溢出和大数吃小数的情况
 3. 永真，原因同上；
 4. 非永真，eg：x = 1, y = 0
+
+### 0x012 整数加减能用逆运算吗？
+
+1. 有符号\(int\)：x = 0x7fffffff, y = 1;  sum = x + y = 0x80000000，x = sum - 1；不可
+2. 无符号\(int\)：x = 0xffffffff,  y = 1;  sum = x + y = 0x00000000，x = sum - 1；不可
+
+* 分析：在模 $$2^n$$ 系统中满足逆运算
 
