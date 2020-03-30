@@ -146,12 +146,15 @@
 
 ![&#x5E26;&#x6807;&#x5FD7;&#x4F4D;&#x7684;&#x52A0;&#x6CD5;&#x5668;](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-26_23-17-32.jpg)
 
+* $$A和B'$$ ：加法器输入端
+* ALU通常仅用于进行加减以及各类逻辑运算和传送操作，乘除法只能利用ALU分步骤进行多次加减和移位间接完成
+
+### 0x05 标志位的计算
+
 * 溢出标志OF：$$OF=C_n⊕C_{n-1}$$
 * 符号标志SF： $$SF=F_{n-1}$$ 
 * 零标志ZF=1当且仅当F=0
 * 进位/借位标志CF： $$CF=cin⊕cout$$ 
-
-### 0x05 标志位的计算
 
 ### 0x06 判别整数加/减运算是否溢出
 
@@ -425,4 +428,13 @@ int main()
 ```
 
 * **float型符号位1位，阶码8位，尾数23位，double阶码11位，尾数52位，所以float扩展成double，应该取double的符号位1位+阶码11位+尾数23位，一共35位，但是考虑到有些情况有舍入，所以至少是34位。（float的精度只有23+1位尾数，所以扩展到double的时候尾数后面只能补0）**
+
+### **0x11 分组讨论**
+
+![](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-30_18-51-31.jpg)
+
+1. 非永真，eg：x = 0x7fffffff,  y = 1；设法让 \(x+y\) 溢出
+2. 永真，浮点数不满足结合律，但是此处的double是由int转化的，不存在溢出和大数吃小数的情况
+3. 永真，原因同上；
+4. 非永真，eg：x = 1, y = 0
 

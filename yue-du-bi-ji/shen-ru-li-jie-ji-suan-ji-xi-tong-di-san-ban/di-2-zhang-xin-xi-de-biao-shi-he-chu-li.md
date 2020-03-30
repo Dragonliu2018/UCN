@@ -10,7 +10,7 @@ void show_bytes(byte_point start, size_t len){
 	size_t i;
 //	for( i = 0; i < len; i++ )
 //		printf("%.2x", start[i]);
-	for( i = len; i > 0; i-- )//小段表示法，逆向输出 
+	for( i = len; i > 0; i-- )//小端表示法，逆向输出 
 		printf("%.2x", start[i-1]);
 	printf("\n"); 
 }//show_bytes

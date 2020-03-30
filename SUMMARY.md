@@ -5,6 +5,7 @@
   * [第0章 准备工作](ji-suan-ji-zu-cheng-yuan-li-2/di-0-zhang-zhun-bei-gong-zuo.md)
   * [第1章 计算机系统基础概述](ji-suan-ji-zu-cheng-yuan-li-2/di-1-zhang-ji-suan-ji-xi-tong-ji-chu-gai-shu.md)
   * [第2章 数据的机器级表示与处理](ji-suan-ji-zu-cheng-yuan-li-2/di-2-zhang-shu-ju-de-ji-qi-ji-biao-shi-yu-chu-li.md)
+  * [第3章 程序的机器级表示](ji-suan-ji-zu-cheng-yuan-li-2/di-3-zhang-cheng-xu-de-ji-qi-ji-biao-shi.md)
   * [PA问题](ji-suan-ji-zu-cheng-yuan-li-2/pa-wen-ti.md)
 * [概率论与数理统计2](gai-lv-lun-yu-shu-li-tong-ji-2/README.md)
   * [第0章 准备工作](gai-lv-lun-yu-shu-li-tong-ji-2/di-0-zhang-zhun-bei-gong-zuo.md)
