@@ -249,15 +249,3 @@ void quicksort(int arr[], int low, int high)
 
 * 时间复杂度： $$O(nlogn)$$ 
 
-## 0x07 大整数乘法\(ing\)
-
-![&#x56FE;1](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-04-01_08-56-53.jpg)
-
-![&#x56FE;2](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-04-01_08-57-14.jpg)
-
-![&#x56FE;3](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-04-01_08-57-24.jpg)
-
-## 0x08 矩阵乘法
-
-![](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-04-01_09-07-32.jpg)
-
