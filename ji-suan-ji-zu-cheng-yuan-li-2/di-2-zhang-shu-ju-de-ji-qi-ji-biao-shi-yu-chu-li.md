@@ -446,8 +446,8 @@ int main()
 ![](https://cdn.jsdelivr.net/gh/Dragonliu2018/FigureBed@master/img/Snipaste_2020-03-30_18-51-31.jpg)
 
 1. 非永真，eg：x = 0x7fffffff,  y = 1；设法让 \(x+y\) 溢出
-2. 永真，浮点数不满足结合律，但是此处的double是由int转化的，不存在溢出和大数吃小数的情况
-3. 永真，原因同上；
+2. 永真，浮点数不满足结合律，但是此处的double是由int转化的，不存在溢出和大数吃小数的情况\(对阶\)
+3. 非永真，精度损失；
 4. 非永真，eg：x = 1, y = 0
 
 ### 0x012 整数加减能用逆运算吗？
