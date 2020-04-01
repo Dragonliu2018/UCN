@@ -51,6 +51,7 @@
 
 * **定义**：设随机变量X在区间\(a, b\)上取值，且概率密度为： $$f(x) =  \begin{cases}    \frac{1}{b-a},  & \text{$a<x<b$} \\    0, & \text{others}         \end{cases}$$ ，则称r.v.X在（a, b）上服从均匀分布，记作 $$X$$ ~ $$U(a,b)$$ 
 * **分布函数**： $$ F(x)= \begin{cases}   0  & \text{$x<a$} \\      \frac{x-a}{b-a} & \text{$a\leq x<b$}\\ 1 &{x\geq b} \end{cases}$$ 
+* **几何概型\***：蒲丰投针实验
 
 ### 2. 指数分布
 
