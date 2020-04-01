@@ -37,6 +37,7 @@
     * [第6讲 计算机设备与环境安全——拓展及应用](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-2-dan-yuan-she-bei-yu-huan-jing-an-quan-zhi-shi/di-6-jiang-ji-suan-ji-she-bei-yu-huan-jing-an-quan-tuo-zhan-ji-ying-yong.md)
   * [第3单元](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-3-dan-yuan/README.md)
     * [第7讲 数据安全——密码基本概念](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-3-dan-yuan/di-7-jiang-shu-ju-an-quan-mi-ma-ji-ben-gai-nian.md)
+    * [第8讲  数据安全——保护数据的保密性、完整性、不可否认性、可认证性和存在性](yi-dong-hu-lian-wang-shi-dai-de-xin-xi-an-quan-fang-hu/di-3-dan-yuan/di-8-jiang-shu-ju-an-quan-bao-hu-shu-ju-de-bao-mi-xing-wan-zheng-xing-bu-ke-fou-ren-xing-ke-ren-zhen.md)
 * [机器视觉实验室](ji-qi-shi-jue-shi-yan-shi/README.md)
   * [准备工作](ji-qi-shi-jue-shi-yan-shi/zhun-bei-gong-zuo.md)
   * [科技文刊](ji-qi-shi-jue-shi-yan-shi/ke-ji-wen-kan.md)
