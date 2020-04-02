@@ -474,6 +474,25 @@ int main()
 2. **加减运算** ① 无符号整数加，和数小于加数时溢出；无符号整数减，小数 - 大数时溢出； ② 有符号加减，正正得负\(正溢出\)、负负得正\(负溢出\) ； ③ 浮点数，最大值再加正数，最小值再减正数时溢出
 3. **乘除运算** ① 无符号整数乘，乘积的高n位不为全0时溢出；无符号整数除，被除数不能为0（这种情况不会视为溢出，而是作为异常中断来处理） ② 有符号整数乘，乘积的高n位为全1或全0并等于低n位的最高位时不溢出；乘积的高n位不为全1或全0时溢出；有符号整数除， $$\frac {-2^{n-1}}{ -1}$$ 溢出； ③ 浮点数，结果超出所能表示的范围
 4. 优秀文章： [中文篇](https://www.cnblogs.com/fsjohnhuang/p/5109766.html)、[英语篇](https://randomascii.wordpress.com/2012/01/11/tricks-with-the-floating-point-format/)
+5. **坑**
+
+   * 无符号数时应该避免与带符号数的直接运算；
+   * 特别是阶乘、Fibonacci数列等函数\(增长较快\)，参数为int类型时很可能溢出，最好改为 long long\(当然也会溢出\)
+   * 调用malloc函数时可能出现溢出
+   * 习惯问题
+
+   ```c
+   typedef unsigned char* byte_point;
+
+   void show_bytes(byte_point start, size_t len){
+   	//按字节顺序打印
+   	size_t i;
+   	//错误！！！无符号数恒大于等于0
+   	for( i = len-1; i >= 0; i-- )//小端表示法，逆向输出 
+   		printf("%.2x", start[i]);
+   	printf("\n"); 
+   }//show_bytes
+   ```
 
 
 
