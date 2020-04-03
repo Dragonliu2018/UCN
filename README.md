@@ -25,6 +25,6 @@ description: 胡说八道一番～
 {% endhint %}
 
 {% hint style="warning" %}
-近段时间笔记停止更新                   ---2020.4.3
+除算法、阅读笔记、后记外其他笔记停止更新                   ---2020.4.3
 {% endhint %}
 
