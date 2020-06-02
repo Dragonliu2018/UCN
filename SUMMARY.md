@@ -20,7 +20,7 @@
   * [第5章 归纳法](suan-fa-she-ji-yu-fen-xi/di-5-zhang-gui-na-fa.md)
   * [第6章 分治](suan-fa-she-ji-yu-fen-xi/di-6-zhang-fen-zhi.md)
   * [第7章 动态规划](suan-fa-she-ji-yu-fen-xi/di-7-zhang-dong-tai-gui-hua.md)
-* [机器视觉实验室](ji-qi-shi-jue-shi-yan-shi/README.md)
+* [机器学习](ji-qi-shi-jue-shi-yan-shi/README.md)
   * [准备工作](ji-qi-shi-jue-shi-yan-shi/zhun-bei-gong-zuo.md)
   * [论文复现](ji-qi-shi-jue-shi-yan-shi/lun-wen-fu-xian/README.md)
     * [窗口感知的高斯引导滤波+图像滤波整理](ji-qi-shi-jue-shi-yan-shi/lun-wen-fu-xian/tu-xiang-lv-bo.md)
