@@ -30,8 +30,6 @@
 
 ![&#x63A8;&#x8BBA;3.4.1 + &#x540C;&#x4F59;&#x6027;&#x8D28;](../.gitbook/assets/tim-tu-pian-20200604094734.jpg)
 
-![&#x63A8;&#x8BBA;3.4.1 + &#x540C;&#x4F59;&#x6027;&#x8D28;](../.gitbook/assets/tim-tu-pian-20200604094734.jpg)
-
 ## 3.5 原根
 
 ### 0x01 理论知识
