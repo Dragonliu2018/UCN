@@ -48,8 +48,3 @@
   * [TLB和cache的关系](https://blog.csdn.net/u014609236/article/details/39472115?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522159136625019725219950257%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=159136625019725219950257&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~rank_v25-1-39472115.first_rank_v2_rank_v25&utm_term=TLB%E4%B8%8ECache%E5%BC%82%E5%90%8C)
   * [TLB与Cache有什么区别？](https://zhidao.baidu.com/question/938371428776271572.html)
 
-### 04. 关于地址划分
-
-* **问**：这一章我们学习了好几种地址，以及不同的地址划分方式，你能对常见的地址划分做个小结吗？
-* **答**：
-
