@@ -25,6 +25,8 @@
   * [第1章 整数的可除性](ji-suan-shu-lun/di-1-zhang-zheng-shu-de-ke-chu-xing.md)
   * [第2章 同余与同余式](ji-suan-shu-lun/di-2-zhang-tong-yu-yu-tong-yu-shi.md)
   * [第3章 平方剩余与原根](ji-suan-shu-lun/di-3-zhang-ping-fang-sheng-yu-yu-yuan-gen.md)
+* [信息论与编码](xin-xi-lun-yu-bian-ma/README.md)
+  * [第5章 信源编码](xin-xi-lun-yu-bian-ma/di-5-zhang-xin-yuan-bian-ma.md)
 * [机器学习](ji-qi-shi-jue-shi-yan-shi/README.md)
   * [准备工作](ji-qi-shi-jue-shi-yan-shi/zhun-bei-gong-zuo.md)
   * [论文复现](ji-qi-shi-jue-shi-yan-shi/lun-wen-fu-xian/README.md)
