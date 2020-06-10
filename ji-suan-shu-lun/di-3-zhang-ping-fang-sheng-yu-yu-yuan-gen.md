@@ -1,5 +1,55 @@
 # 第3章 平方剩余与原根
 
+## 3.1 二次同余式与平方剩余的概念
+
+### 0x01 理论知识
+
+**定义3.1.1：**设 m 是正整数，若同余式 $$x^{2} \equiv a(\bmod m), \quad(a, m)=1 $$ 有解，则 a 叫做模 m 的平方剩余；否则，a 叫做模 m 的平方非剩余。
+
+### 0x02 应考试题
+
+* 求解二次剩余与二次非剩余
+
+![](../.gitbook/assets/snipaste_2020-06-10_14-58-10.jpg)
+
+## 3.2 模为奇素数的平方剩余与平方非剩余
+
+### 0x01 理论知识
+
+**定义3.2.1：**设 p 为奇素数，对于任意整数 a ，定义 a 对 p 的勒让德符号如下： $$\left(\frac{a}{p}\right)=\left\{\begin{array}{l}\text { 1, 若 } a \text { 是模 } p \text { 的平方剩余 } \\ -1, \text { 若 } a \text { 是模 } p \text { 的平方非剩余 } \\ 0, \text { 若 } p | a\end{array}\right.$$ 
+
+**定义3.2.2：**设 $$m=p_{1} p_{2} \cdots p_{r}$$ 为奇素数的乘积，对任意整数 a ，定义 a 对 p 的雅可比符号为 $$\left(\frac{a}{m}\right)=\left(\frac{a}{p_{1}}\right)\left(\frac{a}{p_{2}}\right) \cdots\left(\frac{a}{p_{r}}\right)$$ ，其中， $$\left(\frac{a}{p_{i}}\right) 是 a 对 p_{i}$$ 的勒让德符号。
+
+**定理3.2.1\(欧拉判别条件\)：**设 p 为奇素数，\(a,  p\) = 1，则 a 为模 p 的平方剩余的充分与必要条件是 $$a^{\frac{p-1}{2}} \equiv 1(\bmod p)$$ ，而 a 为模 p 的平方非剩余的充分与必要条件是 $$a^{\frac{p-1}{2}} \equiv-1(\bmod p)$$ ，且若 a 为模 p 的平方剩余，则同余式 $$x^{2} \equiv a(\bmod p)$$ 恰有两个解。
+
+**定理3.2.2：**设 p 为奇素数，则模 p 的简化剩余系中平方剩余与非平方剩余的个数各为 $$\frac{p-1}{2}$$ ，且 $$\frac{p-1}{2}$$  个平方剩余分别与序列 $$1^{2}, 2^{2}, \cdots,\left(\frac{p-1}{2}\right)^{2}$$ 中的一个数同余，且仅与一个数同余。
+
+**定理3.2.3：**设 p 为奇素数，对于任意整数 a ，有 $$\left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}}(\bmod p)$$ 。
+
+**勒让德符号性质：**
+
+* **性质1：** $$\left(\frac{1}{p}\right)=1,\left(\frac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}$$ ，即当 p = 4m+1 时，-1是平方剩余；而当p=4m-1时，-1是平方非剩余；
+* **性质2：** $$\text { 若 } a \equiv b(\bmod p), \quad \text { 则 }\left(\frac{a}{p}\right)=\left(\frac{b}{p}\right)$$ 
+* **性质3：** $$\left(\frac{a b}{p}\right)=\left(\frac{a}{p}\right)\left(\frac{b}{p}\right),$$ 特别地，若 $$p \nmid b$$ ，则 $$\left(\frac{a b^{2}}{p}\right)=\left(\frac{a}{p}\right)\left(\frac{b}{p}\right)\left(\frac{b}{p}\right)=\left(\frac{a}{p}\right)$$ 
+* **性质4：** $$\left(\frac{2}{p}\right)=(-1)^{\frac{p^{2}-1}{8}}$$ ，即当 $$p=8 m \pm 1$$ 时，2 是平方剩余，而当 $$p=8 m \pm 3$$ ，2 是平方非剩余
+* **性质5\(二次反转定律\)：**若 p 和 q 为互质的奇素数，则 $$\left(\frac{q}{p}\right)=(-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}\left(\frac{p}{q}\right)$$ 
+
+**雅可比符号性质：**
+
+* **性质1：** $$\left(\frac{1}{m}\right)=1,\left(\frac{-1}{m}\right)=(-1)^{\frac{m-1}{2}}$$
+* **性质2：** $$\text { 若 } a \equiv b(\bmod m), \quad \text { 则 }\left(\frac{a}{m}\right)=\left(\frac{b}{m}\right)$$ 
+* **性质3：** $$\left(\frac{a b}{m}\right)=\left(\frac{a}{m}\right)\left(\frac{b}{m}\right),$$ 特别地，若 $$(b,m)=1$$ ，则 $$\left(\frac{a b^{2}}{m}\right)=\left(\frac{a}{m}\right)\left(\frac{b}{m}\right)\left(\frac{b}{m}\right)=\left(\frac{a}{m}\right)$$ 
+* **性质4：** $$\left(\frac{2}{m}\right)=(-1)^{\frac{m^{2}-1}{8}}$$ 
+* **性质5\(二次反转定律\)：**若m和 n 都是大于 1 的奇数，则 $$\left(\frac{m}{n}\right)=(-1)^{\frac{n-1}{2} \cdot \frac{m-1}{2}}\left(\frac{n}{m}\right)$$ 
+
+### 0x02 应考试题
+
+* 勒让德符号判断同余式是否有解
+
+![&#x5B9A;&#x4E49;3.2.1](../.gitbook/assets/snipaste_2020-06-10_16-12-22.jpg)
+
+
+
 ## 3.4 指数及其基本性质
 
 ### 0x01 理论知识
