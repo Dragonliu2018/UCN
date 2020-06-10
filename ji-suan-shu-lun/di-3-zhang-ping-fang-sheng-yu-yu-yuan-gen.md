@@ -1,3 +1,7 @@
+---
+description: P54 P61
+---
+
 # 第3章 平方剩余与原根
 
 ## 3.1 二次同余式与平方剩余的概念
@@ -48,7 +52,21 @@
 
 ![&#x5B9A;&#x4E49;3.2.1](../.gitbook/assets/snipaste_2020-06-10_16-12-22.jpg)
 
+* 使用雅可比符号计算勒让德符号
 
+![](../.gitbook/assets/snipaste_2020-06-10_21-34-05.jpg)
+
+## 3.3 模为合数的平方剩余与平方非剩余
+
+### 0x01 理论知识
+
+**定理3.3.1：** $$x^{2} \equiv a\left(\bmod p^{\alpha}\right), \quad(a, p)=1$$ 有解的充分与必要条件是 $$\left(\frac{a}{p}\right)=1$$ ，且有解时解数为 2。
+
+**定理3.3.2：** $$x^{2} \equiv a\left(\bmod 2^{\alpha}\right), \quad(a, 2)=1$$ 有解的充分与必要条件是：当 $$\alpha=2$$ 时， $$a \equiv 1(\bmod 4)$$ ，且有解时解数为 2；当 $$\alpha \geq 3$$ 时， $$a \equiv 1(\bmod 8)$$ ，且有解时解数为 4。
+
+**定理3.3.3：**设 $$m=2^{\alpha} p_{1}^{\alpha_{1}} p_{2}^{\alpha_{2}} \ldots p_{k}^{\alpha_{k}}$$ ，则有解的充分与必要条件是：当 $$\alpha=2$$ 时， $$a \equiv 1(\bmod 4)$$； 当 $$\alpha \geq 3$$ 时， $$a \equiv 1(\bmod 8)$$ 且 $$\left(\frac{a}{p_{i}}\right)=1, i=1, \ldots k$$ ；有解时，  若 $$\alpha=0 或 1, $$ 则解数为 $$2^{k} $$； $$若 \alpha=2, 则解数为 2^{k+1} ;若 \alpha \geq 3,则解数为 2^{k+2}$$ 。
+
+### 0x02 应考试题
 
 ## 3.4 指数及其基本性质
 
@@ -84,15 +102,21 @@
 
 ### 0x01 理论知识
 
-_**定理3.5.1**_**：**模m的原根存在的充分与必要条件是 m = 2，4， $$p^{\alpha}$$ 或 $$2 p^{\alpha}$$ 。
+**定理3.5.1：**模m的原根存在的充分与必要条件是 m = 2，4， $$p^{\alpha}$$ 或 $$2 p^{\alpha}$$ ，其中 p 为单质数。
 
-_**定理3.5.2**_**：**设 $$\phi(m)$$ 的所有不同素因数为 $$q_1,q_2, …, q_k$$ ，则 g 是模m原根的一个充分必要条件是 $$g^{\varphi(m) / q_{i}} \not \equiv 1(\bmod m), \quad( i=1,2, \cdots, k)$$ 
+**定理3.5.2：**设 $$\phi(m)$$ 的所有不同素因数为 $$q_1,q_2, …, q_k$$ ，则 g 是模m原根的一个充分必要条件是 $$g^{\varphi(m) / q_{i}} \not \equiv 1(\bmod m), \quad( i=1,2, \cdots, k)$$ 
 
-_**定理3.5.3\(推论3.4.3推广\):**_ $$\text { 设 }(a, m)=1, \quad \operatorname{ord}_{m}(a)=\delta, \quad k \geq 0, \text { 则 } \operatorname{ord}_{m}\left(a^{k}\right)=\delta /(k, \delta)$$ 
+**定理3.5.3\(推论3.4.3推广\):** $$\text { 设 }(a, m)=1, \quad \operatorname{ord}_{m}(a)=\delta, \quad k \geq 0, \text { 则 } \operatorname{ord}_{m}\left(a^{k}\right)=\delta /(k, \delta)$$ 
 
-_**推论3.5.1:**_  设 $$(a, m)=1, \operatorname{ord}_{m}(a)=\delta, \operatorname{ord}_{m}\left(a^{k}\right)=s$$ ，若 $$(k, \delta)=1$$ ，则 $$\operatorname{ord}_{m}(a)=\operatorname{ord}_{m}\left(a^{k}\right)$$ ，因此在模 m 的简化剩余系中，与 a 指数相同的数有$$\varphi\left(\operatorname{ord}_{m}(a)\right) $$ 个。
+**推论3.5.1:**  设 $$(a, m)=1, \operatorname{ord}_{m}(a)=\delta, \operatorname{ord}_{m}\left(a^{k}\right)=s$$ ，若 $$(k, \delta)=1$$ ，则 $$\operatorname{ord}_{m}(a)=\operatorname{ord}_{m}\left(a^{k}\right)$$ ，因此在模 m 的简化剩余系中，与 a 指数相同的数有$$\varphi\left(\operatorname{ord}_{m}(a)\right) $$ 个。
 
-_**推论3.5.2:**_  a 是模 m 的一个原根，则当 $$(k, \varphi(\mathrm{m}))=1$$ ， $$a^k$$ 也是模 m 的一个原根，若原根的有 $$\phi(\phi(\mathrm{m}))$$ 个。
+**推论3.5.2:**  a 是模 m 的一个原根，则当 $$(k, \varphi(\mathrm{m}))=1$$ ， $$a^k$$ 也是模 m 的一个原根，若原根的有 $$\phi(\phi(\mathrm{m}))$$ 个。
+
+**求解所有原根**
+
+1. 写出简化剩余系
+2. 根据**定理3.5.2**从最小的开始试，得到一个原根
+3. 根据得到的原根生成 $$\phi(\phi(\mathrm{m}))$$ 个原根。
 
 ### 0x02 应考试题
 
@@ -112,11 +136,34 @@ _**推论3.5.2:**_  a 是模 m 的一个原根，则当 $$(k, \varphi(\mathrm{m}
 
 ### 0x01 理论知识
 
-_**定义3.5.1**_**：**设 g 是模 m 的一个原根， 任意与 m 互质的整数 a ， 存在唯一整数 $$\gamma$$ ， $$1 \leq \gamma \leq \varphi(m)$$ ，使得 $$g^{\gamma} \equiv a(\bmod m)$$ 成立，这个整数 $$\gamma$$ 叫做以 g 为底的 a 对模 m 的指标或离散对数。记为 $$\gamma=\operatorname{ind}_{g} a \quad \text { (或 ind } a, \text { 或 }log_g a)$$ 
+**定义3.5.1：**设 g 是模 m 的一个原根， 任意与 m 互质的整数 a ， 存在唯一整数 $$\gamma$$ ， $$1 \leq \gamma \leq \varphi(m)$$ ，使得 $$g^{\gamma} \equiv a(\bmod m)$$ 成立，这个整数 $$\gamma$$ 叫做以 g 为底的 a 对模 m 的指标或离散对数。记为 $$\gamma=\operatorname{ind}_{g} a \quad \text { (或 ind } a, \text { 或 }log_g a)$$ \(**注：**此处的指标与之前学的对数完全一致，仅仅加上取模的条件。\)
 
-**注：**此处的指标与之前学的对数完全一致，仅仅加上取模的条件。
+**定义3.5.2：**如果 n 次同余式 $$x^{n} \equiv a(\bmod m),(a, m)=1$$ 有解，则 a 叫做模 m的 n 次剩余；否则， a 叫做模m的 n 次非剩余。
+
+**定理3.5.1\(n次剩余的判定定理\)：**设 g 是模m的一个原根，则 $$x^{n} \equiv a(\bmod m),(a, m)=1$$ 有解的充分与必要条件是 $$(n, \varphi(m)) | \text { ind }_{g} a$$ ，且在有解的情况下，解数为 $$(n, \varphi(m))$$ 。
+
+**指标性质：**
+
+* **性质1\(定理3.4.2的特例\)**： $$\text { 若 } g^{\gamma_{2}} \equiv g^{\gamma_{1}}(\bmod m), \text { 则 } \gamma_{1} \equiv \gamma_{2}(\bmod \varphi(m))$$ 
+* **性质2**：设 g 是模 m 的一个原根， $$a_{1}, a_{2}, \cdots ; a_{n}$$ ****是与 m 互质的 n 个整数，则$$ \operatorname{ind}_{g}\left(a_{1} a_{2} \cdots a_{n}\right) \equiv \operatorname{ind}_{g}\left(a_{1}\right)+\operatorname{ind}_{g}\left(a_{2}\right)+\cdots+\operatorname{ind}_{g}\left(a_{n}\right)(\bmod \varphi(m)) \$$ ，特别地， $$\operatorname{ind}_{g}\left(a^{n}\right) \equiv \operatorname{nind}_{g}(a)(\bmod \varphi(m))$$ 
+
+**求解高次同余式：**利用指标表和上述指标的性质， 当 $$m=2,4, p^{\alpha} \text { 或 } 2 p^{\alpha}$$ 时，可以得出如下求解方法：
+
+1. 求模m的一个原根 g；
+2. 求以 g 为底的模m的指标表；
+3. 查指标表求 a 对应的指标；
+4. 求解一次同余式 $$ny=\operatorname{ind} a(\bmod \varphi(m))$$ 
+5. 再次查表，求以 y 为指标对应的数，即为解。
 
 ### 0x02 应考试题
 
-* 如果 g 是模 m 的一个原根， 则当 $$\gamma$$ 遍历模 $$\phi(\mathrm{m})$$ 的非负最小完全剩余系时， $$g^{\gamma}$$ 遍历模 m 的简化剩余系
+* 求解简化剩余系中的指标：如果 g 是模 m 的一个原根， 则当 $$\gamma$$ 遍历模 $$\phi(\mathrm{m})$$ 的非负最小完全剩余系时， $$g^{\gamma}$$ 遍历模 m 的简化剩余系
+
+![](../.gitbook/assets/snipaste_2020-06-10_22-45-53.jpg)
+
+![](../.gitbook/assets/snipaste_2020-06-10_22-46-11.jpg)
+
+* 求解高次同余式
+
+![](../.gitbook/assets/snipaste_2020-06-10_22-47-51.jpg)
 
