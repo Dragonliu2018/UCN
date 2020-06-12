@@ -143,6 +143,16 @@ $$\left\{\begin{array}{l} x \equiv b_{1}\left(\bmod m_{1}\right) \\ x \equiv b_{
 
 ### 0x01 理论知识
 
+素数模同余式 $$f(x)=a_{n} x^{n}+a_{n-1} x^{n-1}+\cdots+a_{0} \equiv 0(\bmod p)$$ 其中， p 是素数， $$a_{n} \not\equiv 0(\bmod p)$$
+
+**素数模同余式性质**：
+
+1.  上述同余式与一个次数不超过 $$p-1$$ 的素数模同余式等价。
+2. 设 $$k \leq n, \quad x \equiv a_{i}(\bmod p)(i=1,2, \cdots, k)$$ 是上式的 k 个不同解，则对任何整数 x 来说， $$f(x) \equiv\left(x-a_{1}\right)\left(x-a_{2}\right) \cdots\left(x-a_{k}\right) f_{k}(x)(\bmod p)$$ 其中 $$f_{k}(x)$$ 是 $$n-k$$ 次多项式，首项系数是 $$a_{n}$$ 
+3. 对任意整数 x 来说， $$x^{p-1}-1 \equiv(x-1)(x-2) \cdots(x-(p-1))(\bmod p)$$ 
+4. **Wilson 定理：** $$(p-1) !+1 \equiv 0(\bmod p)$$ 
+5. 上述同余式的解数不超过它的次数。
+
 ## 2.7 一般高次同余式的解数和解法
 
 ### 0x01 理论知识
