@@ -8,7 +8,7 @@
 
 **整除的性质1：**
 
-1. 传递性： $$b|a, \quad c| b \Rightarrow c | a$$ 
+1. 传递性： $$c| b , \quad b|a \Rightarrow c | a$$ 
 2. 可加性： $$m|a, \quad m| b \Rightarrow m | a \pm b$$ ；\(推广： $$m\left|a_{1}, \quad m\right| a_{2}, \dots, m | a_{n}\Rightarrow m | q_{1} a_{1}+q_{2} a_{2}+\cdots+q_{n} a_{n}$$ ， $$q_{1}, q_{2}, \cdots, q_{n} 为任意 n 个整数$$ \)
 
 **带余除法\(欧几里德除法\)：**若 a ， b 是两个整数，其中 b &gt; 0 ，则存在两个唯一 的整数 q 和 r ，使得 $$a=b q+r, \quad 0 \leq r<b$$ 成立。\(定理中 r 为非负最小剩余，若要求 $$|r| \leq b / 2$$， r 称为绝对 最小剩余。\)

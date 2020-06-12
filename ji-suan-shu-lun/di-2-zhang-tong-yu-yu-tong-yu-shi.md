@@ -111,13 +111,33 @@
 
 ![](../.gitbook/assets/snipaste_2020-06-12_09-49-58.jpg)
 
-* 一次同余式转化求解：当然，此题还可直接将模 m的一组完全剩余系代入检验
+* 一次同余式转化求解：当然，此题还可直接将模 m的一组完全剩余系代入检验；或者利用同余性质6乘法去凑
 
 ![](../.gitbook/assets/snipaste_2020-06-12_11-30-26.jpg)
 
 ## 2.5 孙子定理
 
 ### 0x01 理论知识
+
+$$\left\{\begin{array}{l} x \equiv b_{1}\left(\bmod m_{1}\right) \\ x \equiv b_{2}\left(\bmod m_{2}\right) \\ \vdots \\ x \equiv b_{k}\left(\bmod m_{k}\right) \end{array}\right.$$ 
+
+**孙子定理\(中国剩余定理\)：**设 $$m_{1}, m, \cdots , m_{k}$$ 是 k 个两两互质的正整数， $$m=m_{1} m_{2} \cdots m_{k},$$ $$ M_{i}=m / m_{i}, $$ $$i=1, \cdots, k$$ ，则同余式组有且只有一个解，这个解是 $$x \equiv M_{1}^{\prime} M_{1} b_{1}+M_{2}^{\prime} M_{2} b_{2}+\cdots+M_{k}^{\prime} M_{k} b_{k}(\bmod m)$$ ，其中 $$M_{i}^{\prime} M_{i} \equiv 1\left(\bmod m_{i}\right), $$ $$i=1, \cdots, k$$ 
+
+**同余式组求解步骤**
+
+1. 计算 $$m=m_{1} m_{2} \cdots m_{k} \text { 和 } M_{i}=m / m_{i}, \quad i=1, \cdots, k$$ 
+2. 通过解同余式 $$M_{i}^{\prime} M_{i} \equiv 1\left(\bmod m_{i}\right) \text { 求出所有 } M_{i}^{\prime}, \quad i=1, \cdots, k$$ 
+3. 计算 $$x \equiv M_{1}^{\prime} M_{1} b_{1}+M_{2}^{\prime} M_{2} b_{2}+\cdots+M_{k}^{\prime} M_{k} b_{k}(\bmod m)$$ 
+
+### 0x02 应考试题
+
+* 同余式组求解
+
+![](../.gitbook/assets/snipaste_2020-06-12_22-04-39.jpg)
+
+* 同余式组求解：利用同余性质10\(最小公倍数\)拆分
+
+![](../.gitbook/assets/snipaste_2020-06-12_22-18-04.jpg)
 
 ## 2.6 素数模高次同余式
 
