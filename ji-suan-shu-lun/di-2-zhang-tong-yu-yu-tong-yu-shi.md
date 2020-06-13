@@ -149,11 +149,18 @@ $$\left\{\begin{array}{l} x \equiv b_{1}\left(\bmod m_{1}\right) \\ x \equiv b_{
 
 1.  上述同余式与一个次数不超过 $$p-1$$ 的素数模同余式等价。
 2. 设 $$k \leq n, \quad x \equiv a_{i}(\bmod p)(i=1,2, \cdots, k)$$ 是上式的 k 个不同解，则对任何整数 x 来说， $$f(x) \equiv\left(x-a_{1}\right)\left(x-a_{2}\right) \cdots\left(x-a_{k}\right) f_{k}(x)(\bmod p)$$ 其中 $$f_{k}(x)$$ 是 $$n-k$$ 次多项式，首项系数是 $$a_{n}$$ 
-3. 对任意整数 x 来说， $$x^{p-1}-1 \equiv(x-1)(x-2) \cdots(x-(p-1))(\bmod p)$$ 
-4. **Wilson 定理：** $$(p-1) !+1 \equiv 0(\bmod p)$$ 
+3. 对任意整数 x 来说， $$x^{p-1}-1 \equiv(x-1)(x-2) \cdots(x-(p-1))(\bmod p)$$ （因式分解）
+4. **Wilson 定理：** $$(p-1) !+1 \equiv 0(\bmod p)$$ \(性质3的特例\)
 5. 上述同余式的解数不超过它的次数。
+6. 设 $$n<p$$ ，同余式 $$f(x)=a_{n} x^{n}+a_{n-1} x^{n-1}+\cdots+a_{0} \equiv 0(\bmod p)$$ 有 n 个解的充分与必要条件是 $$x^{p}-x=f(x) \cdot q(x)+p \cdot r(x)$$ ，其中 $$q(x), \quad r(x)$$ 为整系数多项式，且 $$r(x)$$ 的次数小于 n 。
 
 ## 2.7 一般高次同余式的解数和解法
 
 ### 0x01 理论知识
+
+#### 素数幂模同余式：设 $$x \equiv x_{1}(\bmod p)$$ 是同余式 $$f(x) \equiv 0(\bmod p)$$ 的一个解，且 $$\left(f^{\prime}\left(x_{1}\right), p\right)=1$$ ，则 $$x \equiv x_{1}(\bmod p)$$ 恰好对应了 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的一个解 $$x \equiv x_{\alpha}\left(\bmod p^{\alpha}\right)$$ ，其中 $$x_{1} \equiv x_{\alpha}(\bmod p)$$ 。
+
+**一般高次同余式解数：**设 $$m_{1}, m_{2}, \cdots, m_{k}$$ ****是 k 个两两互质的正整数， $$m=m_{1} m_{2} \cdots m_{k}$$ ，则同余式 $$f(x) \equiv 0(\bmod m)$$ 与同余式组 $$\left\{\begin{array}{l} f(x)=0\left(\bmod m_{1}\right) \\ f(x)=0\left(\bmod m_{2}\right) \\ f(x) \equiv 0\left(\bmod m_{k}\right) \end{array}\right.$$ 等价。如果用 $$T_i$$ 表示 $$f(x) \equiv 0\left(\bmod m_{i}\right)$$ 对模 $$m_i$$ 的解数 $$i=1, \cdots, k, T \text { 表示 } f(x) \equiv 0(\bmod m)$$ 对模m的解数，则 $$T=T_{1} T_{2} \cdots T_{k}$$ 。
+
+**一般高次同余式求解**：由算数基本定理知，任意正整数 m 都可以分解为 $$m=p_{1}^{\alpha_{1}} p_{2}^{\alpha_{2}} \cdots p_{k}^{\alpha_{k}}$$ ，因此，求解 $$f(x) \equiv 0(\bmod m)$$ 就等价于求解同余式组 $$f(x) \equiv 0\left(\bmod p_{i}^{\alpha_{i}}\right), \quad i=1, \cdots, k$$ 
 
