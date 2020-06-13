@@ -158,9 +158,19 @@ $$\left\{\begin{array}{l} x \equiv b_{1}\left(\bmod m_{1}\right) \\ x \equiv b_{
 
 ### 0x01 理论知识
 
-#### 素数幂模同余式：设 $$x \equiv x_{1}(\bmod p)$$ 是同余式 $$f(x) \equiv 0(\bmod p)$$ 的一个解，且 $$\left(f^{\prime}\left(x_{1}\right), p\right)=1$$ ，则 $$x \equiv x_{1}(\bmod p)$$ 恰好对应了 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的一个解 $$x \equiv x_{\alpha}\left(\bmod p^{\alpha}\right)$$ ，其中 $$x_{1} \equiv x_{\alpha}(\bmod p)$$ 。
+**素数幂模同余式**：设 $$x \equiv x_{1}(\bmod p)$$ 是同余式 $$f(x) \equiv 0(\bmod p)$$ 的一个解，且 $$\left(f^{\prime}\left(x_{1}\right), p\right)=1$$ ，则 $$x \equiv x_{1}(\bmod p)$$ 恰好对应了 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的一个解 $$x \equiv x_{\alpha}\left(\bmod p^{\alpha}\right)$$ ，其中 $$x_{1} \equiv x_{\alpha}(\bmod p)$$ 。
+
+**素数幂模同余式求解**： $$f(x) \equiv 0(\bmod p) \text { 的解求 } f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$，在由 $$f(x) \equiv 0\left(\bmod p^{\alpha-1}\right)$$ 的解 $$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 求 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的解时，由于 ****$$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 对应了模 $$p^{\alpha}$$ 的 p 个值， $$x \equiv x_{\alpha-1}+t_{\alpha-1} p^{\alpha-1}\left(\bmod p^{\alpha}\right), $$ $$t_{\alpha-1}=0,1, \cdots, p-1$$ ，而满足 $$f^{\prime}\left(x_{\alpha-1}\right) t_{\alpha-1} \equiv-\frac{f\left(x_{\alpha-1}\right)}{p^{\alpha-1}}(\bmod p)$$ 的 $$t_{\alpha-1}$$对应的 x 才是 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的解，因此关键是通过上式求出 $$t_{\alpha-1}$$ 。  
+如果 $$\left(f^{\prime}\left(x_{1}\right), p\right)=1$$ ，则上式恰有一个解，因此 $$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 只给出了 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的一个解。  
+如果 $$\left(f^{\prime}\left(x_{1}\right), p\right) \neq 1$$ ，即 $$p | f^{\prime}\left(x_{1}\right)$$ ，则当 $$\frac{f\left(x_{\alpha-1}\right)}{p^{\alpha-1}} \equiv 0(\bmod p)$$ 时， 上式有 p 个解， 因此 $$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 就给出了 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的 p 个解；当 $$\frac{f\left(x_{\alpha-1}\right)}{p^{\alpha-1}} \not \equiv 0(\bmod p)$$ 时，上式无解，因此 $$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 中没有 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的解。
 
 **一般高次同余式解数：**设 $$m_{1}, m_{2}, \cdots, m_{k}$$ ****是 k 个两两互质的正整数， $$m=m_{1} m_{2} \cdots m_{k}$$ ，则同余式 $$f(x) \equiv 0(\bmod m)$$ 与同余式组 $$\left\{\begin{array}{l} f(x)=0\left(\bmod m_{1}\right) \\ f(x)=0\left(\bmod m_{2}\right) \\ f(x) \equiv 0\left(\bmod m_{k}\right) \end{array}\right.$$ 等价。如果用 $$T_i$$ 表示 $$f(x) \equiv 0\left(\bmod m_{i}\right)$$ 对模 $$m_i$$ 的解数 $$i=1, \cdots, k, T \text { 表示 } f(x) \equiv 0(\bmod m)$$ 对模m的解数，则 $$T=T_{1} T_{2} \cdots T_{k}$$ 。
 
 **一般高次同余式求解**：由算数基本定理知，任意正整数 m 都可以分解为 $$m=p_{1}^{\alpha_{1}} p_{2}^{\alpha_{2}} \cdots p_{k}^{\alpha_{k}}$$ ，因此，求解 $$f(x) \equiv 0(\bmod m)$$ 就等价于求解同余式组 $$f(x) \equiv 0\left(\bmod p_{i}^{\alpha_{i}}\right), \quad i=1, \cdots, k$$ 
+
+### 0x02 应考试题
+
+* **素数幂模同余式求解\*\*\*\*\*\***
+
+![](../.gitbook/assets/snipaste_2020-06-13_14-55-57.jpg)
 
