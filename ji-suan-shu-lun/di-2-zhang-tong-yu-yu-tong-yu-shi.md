@@ -1,5 +1,10 @@
 # 第2章 同余与同余式
 
+## 2.0 学习目标
+
+* **初级（计算为主）**：同余的计算、求剩余类与剩余系、利用欧拉定理和费马定理进行计算、解一次同余式、利用孙子定理解一次同余式组、解一般高次同余式
+* **进阶（推理证明为主）**：灵活应用同余的性质、欧拉定理、费马定理、孙子定理
+
 ## 2.1 同余的概念与性质
 
 ### 0x01 理论知识
@@ -8,12 +13,12 @@
 
 **同余性质：**
 
-1. $$a \equiv b(\bmod m)$$ 等价条件是 $$m | a-b$$ ，即 $$a=b+m t$$ ， t是整数。特别地， $$a \equiv 0(\bmod m) \Leftrightarrow m|a$$ 
+1. 整除：$$a \equiv b(\bmod m)$$ 等价条件是 $$m | a-b$$ ，即 $$a=b+m t$$ ， t是整数。特别地， $$a \equiv 0(\bmod m) \Leftrightarrow m|a$$ 
 2. 自反性：$$a \equiv a(\bmod m)$$ 
 3. 对称性：$$\text {若}a \equiv b(\mathrm{mod} m), \text { 则 } b \equiv a(\bmod m)$$ 
 4. 传递性： $$a \equiv b(\mathrm{mod} m), \quad b \equiv c(\mathrm{mod} m), \text { 则 } a \equiv c(\mathrm{mod} m)$$ 
 5. 加减法： $$a \equiv b(\mathrm{mod} m), \quad c \equiv d(\mathrm{mod} m), \text { 则 } a \pm c \equiv b \pm d(\mathrm{mod} m)$$ ，特别地，对任意整数 k， $$a \pm k \equiv b \pm k(\bmod m)$$ 
-6. 乘法： $$a \equiv b(\mathrm{mod} m), \quad c \equiv d(\mathrm{mod} m), \quad \text { 则 } a c \equiv b d(\mathrm{mod} m)$$ ，特别地，对任意整数 k ， $$a k \equiv b k(\bmod m)$$ （性质5.6推广： $$\text { 若 } a_{i} \equiv b_{i}(\mathrm{mod} m), \quad i=1, \cdots, k$$，对于任意整数 x ，有 $$\sum_{i=1}^{k} a_{i} x^{i} \equiv \sum_{i=1}^{k} b_{i} x^{i}(\bmod m)$$ ）
+6. 乘法： $$a \equiv b(\mathrm{mod} m), \quad c \equiv d(\mathrm{mod} m), \quad \text { 则 } a c \equiv b d(\mathrm{mod} m)$$ ；特别地，对任意整数 k ， $$a k \equiv b k(\bmod m)$$； $$a^{k} \equiv b^{k}(\bmod m)$$ （推广： $$\text { 若 } a_{i} \equiv b_{i}(\mathrm{mod} m), \quad i=1, \cdots, k$$，对于任意整数 x ，有 $$\sum_{i=1}^{k} a_{i} x^{i} \equiv \sum_{i=1}^{k} b_{i} x^{i}(\bmod m)$$ ）
 7. 除法：若 $$a \equiv b(\mathrm{mod} m), a=a_{1} d, \quad b=b_{1} d, \text { 且 }(d, m)=1$$ ，则 $$a_{1} \equiv b_{1}(\bmod m)$$ 
 8. 乘法2： $$\text { 若 } a \equiv b(\bmod m), \text { 对任意正整数 } k, \text { 有 } a k \equiv b k(\bmod m k)$$ 
 9. 除法2： $$\text { 若 } a \equiv b(\bmod m), \quad d |(a, b, m), \text { 则 } \frac{a}{d} \equiv \frac{b}{d}\left(\bmod \frac{m}{d}\right)$$ 
@@ -43,9 +48,10 @@
 
 **剩余系定义**：  
 设 $$m \in Z^{+}, \quad K_{0}, K_{1}, \cdots, K_{m-1}$$ 模 m的 m个两两不同的剩余类，从每个剩余类 $$K_i$$ 中取出一个代表 $$a_i$$ ， $$a_{0}, a_{1}, \cdots, a_{m-1}$$ 叫做模m的一个完全剩余系。  
-这 $$\varphi(m)$$ 个与 m互质的整数组成模m的一个简化剩余系。 $$0,1, \cdots, m-1$$ 称为模 m 的最小非负完全剩余系 ；  
+$$0,1, \cdots, m-1$$ 称为模 m 的最小非负完全剩余系 ；  
 当 m 是偶数时， $$-m / 2, \cdots,-1,0,1, \cdots, m / 2-1$$ 或 $$-m / 2+1, \cdots,-1,0,1, \cdots, m / 2$$ ，  
-当 m 是奇数时， $$-(m-1) / 2, \cdots,-1,0,1, \cdots,(m-1) / 2$$ ，称为模 m的绝对最小完全剩余系。
+当 m 是奇数时， $$-(m-1) / 2, \cdots,-1,0,1, \cdots,(m-1) / 2$$ ，称为模 m的绝对最小完全剩余系。  
+这 $$\varphi(m)$$ 个与 m互质的整数组成模m的一个简化剩余系。
 
 **剩余系性质**： 
 
@@ -89,14 +95,15 @@
 设整系数多项式 $$f(x)=a_{n} x^{n}+a_{n-1} x^{n-1}+\cdots+a_{1} x+a_{0}$$ ，m 是一个正整数，则 $$f(x) \equiv 0(\bmod m)$$ 叫做模m的同余式。  
 若 $$a_{n} \not\equiv 0(\bmod m)$$ ，则 n 叫做上式的次数。  
 若 a 是满足 $$f(a) \equiv 0(\bmod m)$$ 的一个整数，则 $$x \equiv a(\bmod m)$$ 叫做同余式的一个解。  
-\(满足同余式且模m同余的所有整数今后算作一个解。而只要取模 m的一组完全剩余系代入同余式进行检验就可得到全部不同解。显然，模 m的同余式的解数最多为m\)
+当 $$a_1,a_2$$ 均为同余式的解，且对模m不同余时才把它们看作是不同解，把所有对模m两两不同余的解的个数称为同余式的解数。  
+**注**：\(满足同余式且模m同余的所有整数今后算作一个解。而只要取模 m的一组完全剩余系代入同余式进行检验就可得到全部不同解。显然，模 m的同余式的解数最多为m\)
 
 **同余式的性质**：同余式的一些性质，用于简化同余式的求解。
 
-1. 设 p 为素数，则同余式 $$x^{p}-x \equiv 0(\bmod p)$$ 有 p 个解。（由费马小定理可得）
-2. 同余式 $$f(x)+m g(x) \equiv 0(\bmod m) \text { 与 } f(x) \equiv 0(\bmod m)$$ 的解相同，一般的，一个同余式中系数为模的倍数的项去掉后，同余式的解不变。
-3. 设 $$g(x)$$ 是整系数多项式，则同余式 $$f(x)+g(x) \equiv g(x)(\bmod m) \text { 与 } f(x) \equiv 0(\bmod m)$$ 的解相同。
-4. 设 $$(a, m)=1$$ ，则同余式 $$a f(x) \equiv 0(\bmod m) \text { 与 } f(x) \equiv 0(\bmod m)$$ 的解相同。
+1. 费马小定理：设 p 为素数，则同余式 $$x^{p}-x \equiv 0(\bmod p)$$ 有 p 个解。（由费马小定理可得）
+2. 倍数：同余式 $$f(x)+m g(x) \equiv 0(\bmod m) \text { 与 } f(x) \equiv 0(\bmod m)$$ 的解相同，一般的，一个同余式中系数为模的倍数的项去掉后，同余式的解不变。
+3. 和数：设 $$g(x)$$ 是整系数多项式，则同余式 $$f(x)+g(x) \equiv g(x)(\bmod m) \text { 与 } f(x) \equiv 0(\bmod m)$$ 的解相同。
+4. 同余性质：设 $$(a, m)=1$$ ，则同余式 $$a f(x) \equiv 0(\bmod m) \text { 与 } f(x) \equiv 0(\bmod m)$$ 的解相同。
 5. 设同余式 $$q(x) \equiv 0(\bmod m)$$ 有 m个解\(即恒等同余式\)，若 $$f(x) \equiv q(x) h(x)+r(x)(\bmod m)$$ 则 $$r(x) \equiv 0(\bmod m) \text { 与 } f(x) \equiv 0(\bmod m)$$ 的解相同。
 
 **一次同余式定义：**当同余式的次数为 1 时就是一次同余式，一般我们将一次同余式写成如下的形式： $$a x \equiv b(\mathrm{mod} m), \quad a  \not\equiv 0(\mathrm{mod} m)$$ 
@@ -104,6 +111,13 @@
 **一次同余式求解**：一次同余式有解的充分与必要条件是 $$(a, m) | b$$ 。若有解，则解的个数\(对模 m来说\)为 $$d=(a, m)$$ ，它们是 $$x \equiv x_{0}+k m / d(\mathrm{mod} m), \quad k=0,1, \cdots, d-1$$ 
 
 **一次同余式与二元一次不定方程的联系**：适合一次同余式的整数也就是适合不定方程 $$ax-m y=b$$ 的解中 x 的值， 因此可以用求不定方程的方法求解一次同余式。
+
+**步骤：**解同余式 $$a x \equiv b(\bmod m)$$ ，设 $$(a，m)=d$$ 
+
+1. 通过 $$d|b$$ 判断是否有解；
+2. $$a, b, m$$ 同时除以d，求 $$a_{1} x \equiv b_{1}\left(\bmod m_{1}\right)$$ 的唯一解 $$x \equiv x_{0}\left(\bmod m_{1}\right)$$ 
+3. 唯一解有2种求法： ① 同余式两边同乘 $$a_1^{\varphi(m_1)-1}$$ 将x的系数化为1； ② 转化为二元一次不定方程 $$a _1x-m_1y=b_1$$ 求解
+4. 写出 d 个解： $$x \equiv x_{0}+m_{1} k(\bmod m), \quad k=0,1,2, \cdots, d-1$$ 
 
 ### 0x02 应考试题
 
@@ -121,7 +135,9 @@
 
 $$\left\{\begin{array}{l} x \equiv b_{1}\left(\bmod m_{1}\right) \\ x \equiv b_{2}\left(\bmod m_{2}\right) \\ \vdots \\ x \equiv b_{k}\left(\bmod m_{k}\right) \end{array}\right.$$ 
 
-**孙子定理\(中国剩余定理\)：**设 $$m_{1}, m, \cdots , m_{k}$$ 是 k 个两两互质的正整数， $$m=m_{1} m_{2} \cdots m_{k},$$ $$ M_{i}=m / m_{i}, $$ $$i=1, \cdots, k$$ ，则同余式组有且只有一个解，这个解是 $$x \equiv M_{1}^{\prime} M_{1} b_{1}+M_{2}^{\prime} M_{2} b_{2}+\cdots+M_{k}^{\prime} M_{k} b_{k}(\bmod m)$$ ，其中 $$M_{i}^{\prime} M_{i} \equiv 1\left(\bmod m_{i}\right), $$ $$i=1, \cdots, k$$ 
+**孙子定理\(中国剩余定理\)：**设 $$m_{1}, m, \cdots , m_{k}$$ 是 k 个两两互质的正整数， $$m=m_{1} m_{2} \cdots m_{k},$$ $$ M_{i}=m / m_{i}, $$ $$i=1, \cdots, k$$ ，则同余式组有且只有一个解，这个解是 $$x \equiv M_{1}^{\prime} M_{1} b_{1}+M_{2}^{\prime} M_{2} b_{2}+\cdots+M_{k}^{\prime} M_{k} b_{k}(\bmod m)$$ ，其中 $$M_{i}^{\prime} M_{i} \equiv 1\left(\bmod m_{i}\right), $$ $$i=1, \cdots, k$$   
+**性质**：若 $$b_{1}, b_{2}, \ldots, b_{k}$$ 分别遍历模 $$m_{1}, m_{2}, \dots, m_{k}$$ 的完全剩余系，则 $$M_{1}^{\prime} M_{1} b_{1}+M_{2}^{\prime} M_{2} b_{2}+\cdots+M_{k}^{\prime} M_{k} b_{k}$$ 遍历模 $$m=m_{1} m_{2} \cdots m_{k}$$ 的完全剩余系。  
+
 
 **同余式组求解步骤**
 
@@ -162,15 +178,19 @@ $$\left\{\begin{array}{l} x \equiv b_{1}\left(\bmod m_{1}\right) \\ x \equiv b_{
 
 **素数幂模同余式求解**： $$f(x) \equiv 0(\bmod p) \text { 的解求 } f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$，在由 $$f(x) \equiv 0\left(\bmod p^{\alpha-1}\right)$$ 的解 $$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 求 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的解时，由于 ****$$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 对应了模 $$p^{\alpha}$$ 的 p 个值， $$x \equiv x_{\alpha-1}+t_{\alpha-1} p^{\alpha-1}\left(\bmod p^{\alpha}\right), $$ $$t_{\alpha-1}=0,1, \cdots, p-1$$ ，而满足 $$f^{\prime}\left(x_{\alpha-1}\right) t_{\alpha-1} \equiv-\frac{f\left(x_{\alpha-1}\right)}{p^{\alpha-1}}(\bmod p)$$ 的 $$t_{\alpha-1}$$对应的 x 才是 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的解，因此关键是通过上式求出 $$t_{\alpha-1}$$ 。  
 如果 $$\left(f^{\prime}\left(x_{1}\right), p\right)=1$$ ，则上式恰有一个解，因此 $$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 只给出了 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的一个解。  
-如果 $$\left(f^{\prime}\left(x_{1}\right), p\right) \neq 1$$ ，即 $$p | f^{\prime}\left(x_{1}\right)$$ ，则当 $$\frac{f\left(x_{\alpha-1}\right)}{p^{\alpha-1}} \equiv 0(\bmod p)$$ 时， 上式有 p 个解， 因此 $$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 就给出了 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的 p 个解；当 $$\frac{f\left(x_{\alpha-1}\right)}{p^{\alpha-1}} \not \equiv 0(\bmod p)$$ 时，上式无解，因此 $$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 中没有 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的解。
+如果 $$\left(f^{\prime}\left(x_{1}\right), p\right) \neq 1$$ ，即 $$p | f^{\prime}\left(x_{1}\right)$$ ，则当 $$\frac{f\left(x_{\alpha-1}\right)}{p^{\alpha-1}} \equiv 0(\bmod p)$$ 时， 上式有 p 个解， 因此 $$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 就给出了 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的 p 个解；当 $$\frac{f\left(x_{\alpha-1}\right)}{p^{\alpha-1}} \not \equiv 0(\bmod p)$$ 时，上式无解，因此 $$x \equiv x_{\alpha-1}\left(\bmod p^{\alpha-1}\right)$$ 中没有 $$f(x) \equiv 0\left(\bmod p^{\alpha}\right)$$ 的解。  
+**步骤：\*\*\*\*\***  
+① 
 
-**一般高次同余式解数：**设 $$m_{1}, m_{2}, \cdots, m_{k}$$ ****是 k 个两两互质的正整数， $$m=m_{1} m_{2} \cdots m_{k}$$ ，则同余式 $$f(x) \equiv 0(\bmod m)$$ 与同余式组 $$\left\{\begin{array}{l} f(x)=0\left(\bmod m_{1}\right) \\ f(x)=0\left(\bmod m_{2}\right) \\ f(x) \equiv 0\left(\bmod m_{k}\right) \end{array}\right.$$ 等价。如果用 $$T_i$$ 表示 $$f(x) \equiv 0\left(\bmod m_{i}\right)$$ 对模 $$m_i$$ 的解数 $$i=1, \cdots, k, T \text { 表示 } f(x) \equiv 0(\bmod m)$$ 对模m的解数，则 $$T=T_{1} T_{2} \cdots T_{k}$$ 。
+**一般高次同余式解数：**  
+设 $$m_{1}, m_{2}, \cdots, m_{k}$$ ****是 k 个两两互质的正整数， $$m=m_{1} m_{2} \cdots m_{k}$$ ，则同余式 $$f(x) \equiv 0(\bmod m)$$ 与同余式组 $$\left\{\begin{array}{l} f(x)=0\left(\bmod m_{1}\right) \\ f(x)=0\left(\bmod m_{2}\right) \\ f(x) \equiv 0\left(\bmod m_{k}\right) \end{array}\right.$$ 等价。如果用 $$T_i$$ 表示 $$f(x) \equiv 0\left(\bmod m_{i}\right)$$ 对模 $$m_i$$ 的解数 $$i=1, \cdots, k, T \text { 表示 } f(x) \equiv 0(\bmod m)$$ 对模m的解数，则 $$T=T_{1} T_{2} \cdots T_{k}$$ 。  
+当 $$m=P_{1}^{\alpha_{1}} P_{2}^{\alpha_{2}} \cdots P_{k}^{\alpha_{K}}$$ 时，同余式 $$f(x) \equiv 0(\bmod m)$$ 等价于同余式组 $$f(x) \equiv 0\left(\bmod P^{\alpha_{i}}\right),$$$$ i=1,2, \cdots, k$$ 
 
 **一般高次同余式求解**：由算数基本定理知，任意正整数 m 都可以分解为 $$m=p_{1}^{\alpha_{1}} p_{2}^{\alpha_{2}} \cdots p_{k}^{\alpha_{k}}$$ ，因此，求解 $$f(x) \equiv 0(\bmod m)$$ 就等价于求解同余式组 $$f(x) \equiv 0\left(\bmod p_{i}^{\alpha_{i}}\right), \quad i=1, \cdots, k$$ 
 
 ### 0x02 应考试题
 
-* **素数幂模同余式求解\*\*\*\*\*\***
+* **素数幂模同余式求解**
 
 ![](../.gitbook/assets/snipaste_2020-06-13_14-55-57.jpg)
 
