@@ -55,5 +55,6 @@
   * [准备工作](ji-qi-shi-jue-shi-yan-shi/zhun-bei-gong-zuo.md)
   * [论文复现](ji-qi-shi-jue-shi-yan-shi/lun-wen-fu-xian/README.md)
     * [窗口感知的高斯引导滤波+图像滤波整理](ji-qi-shi-jue-shi-yan-shi/lun-wen-fu-xian/tu-xiang-lv-bo.md)
-* [index](ce-shi.md)
+* [机器学习\(周志华西瓜书\)](ji-qi-xue-xi-zhou-zhi-hua-xi-gua-shu/README.md)
+  * [第1章 绪论](ji-qi-xue-xi-zhou-zhi-hua-xi-gua-shu/di-1-zhang-xu-lun.md)
 
