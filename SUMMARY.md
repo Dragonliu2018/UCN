@@ -1,6 +1,7 @@
 # Table of contents
 
 * [前言](README.md)
+* [数学基础](shu-xue-ji-chu.md)
 * [计算机组成原理2](ji-suan-ji-zu-cheng-yuan-li-2/README.md)
   * [第0章 准备工作](ji-suan-ji-zu-cheng-yuan-li-2/di-0-zhang-zhun-bei-gong-zuo.md)
   * [第1章 计算机系统基础概述](ji-suan-ji-zu-cheng-yuan-li-2/di-1-zhang-ji-suan-ji-xi-tong-ji-chu-gai-shu.md)
