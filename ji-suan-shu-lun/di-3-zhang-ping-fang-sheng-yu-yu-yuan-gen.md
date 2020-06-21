@@ -17,9 +17,15 @@ description: P54 P61
 
 **判断二次同余式是否有解：\*\*\*\***
 
+**求解模m的所有平方剩余：**
+
+1. 写出模m的简化剩余系；
+2. 将其代入同余式 $$x^{2} \equiv a(\bmod m), \quad(a, m)=1 $$ ，同余式右边的就是平方剩余。
+3. 注：若m是素数，简化剩余系可用绝对最小完全剩余系\(去掉0\)，便于计算\(只算正数即可\)。
+
 ### 0x02 应考试题
 
-* 求解二次剩余与二次非剩余
+* 求解模m的所有平方剩余
 
 ![](../.gitbook/assets/snipaste_2020-06-10_14-58-10.jpg)
 
@@ -93,6 +99,11 @@ description: P54 P61
 2. 设m是大于1的整数，（a，m）= 1，则 $$a^{k} \equiv a^{s}(\bmod m)$$ 成立的充分与必要条件是 $$k \equiv s\left(\bmod \operatorname{ord}_{m}(a)\right)$$ 。特别地， $$a^{k} \equiv 1(\bmod m)$$ 的充分与必要条件是 $$k \equiv 0\left(\bmod \operatorname{ord}_{m}(a)\right)$$ ，即 $${ord}_{m}(a)|k$$ 。
 3. 设m是大于1的整数，（a，m）=1，则 $$\operatorname{ord}_{m}(a) | \varphi(m)$$ 
 4. 若a对模m的指数是 $$\delta_1 \delta_{2}$$ ， $$\delta_1>0$$ ， $$\delta_2>0$$ ，则 $$a^{\delta_1}>0$$ 对模m的指数是 $$\delta_{2}$$ 。
+
+**求解指数**：
+
+1. 法①：从1开始代入，直至 $$\varphi(m)$$ ，同时利用同余性质；
+2. 法②：只代入 $$\varphi(m)$$ 的正因子。
 
 ### 0x02 应考试题
 

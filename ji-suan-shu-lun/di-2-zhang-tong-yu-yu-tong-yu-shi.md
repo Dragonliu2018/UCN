@@ -114,10 +114,11 @@ $$0,1, \cdots, m-1$$ 称为模 m 的最小非负完全剩余系 ；
 
 **步骤：**解同余式 $$a x \equiv b(\bmod m)$$ ，设 $$(a，m)=d$$ 
 
-1. 通过 $$d|b$$ 判断是否有解；
-2. $$a, b, m$$ 同时除以d，求 $$a_{1} x \equiv b_{1}\left(\bmod m_{1}\right)$$ 的唯一解 $$x \equiv x_{0}\left(\bmod m_{1}\right)$$ 
-3. 唯一解有2种求法： ① 同余式两边同乘 $$a_1^{\varphi(m_1)-1}$$ 将x的系数化为1； ② 转化为二元一次不定方程 $$a _1x-m_1y=b_1$$ 求解
-4. 写出 d 个解： $$x \equiv x_{0}+m_{1} k(\bmod m), \quad k=0,1,2, \cdots, d-1$$ 
+1. 化成一般形式：$$a x \equiv b(\bmod m)$$ 
+2. 通过 $$d|b$$ 判断是否有解；
+3. $$a, b, m$$ 同时除以d，求 $$a_{1} x \equiv b_{1}\left(\bmod m_{1}\right)$$ 的唯一解 $$x \equiv x_{0}\left(\bmod m_{1}\right)$$ 
+4. 唯一解有2种求法： ① 同余式两边同乘 $$a_1^{\varphi(m_1)-1}$$ 将x的系数化为1； ② 转化为二元一次不定方程 $$a _1x-m_1y=b_1$$ 求解
+5. 写出 d 个解： $$x \equiv x_{0}+m_{1} k(\bmod m), \quad k=0,1,2, \cdots, d-1$$ 
 
 ### 0x02 应考试题
 
@@ -154,6 +155,14 @@ $$\left\{\begin{array}{l} x \equiv b_{1}\left(\bmod m_{1}\right) \\ x \equiv b_{
 * 同余式组求解：利用同余性质10\(最小公倍数\)拆分
 
 ![](../.gitbook/assets/snipaste_2020-06-12_22-18-04.jpg)
+
+* 利用同余性质10\(最小公倍数\)与孙子定理求解
+
+![](../.gitbook/assets/snipaste_2020-06-21_23-05-53.jpg)
+
+![](../.gitbook/assets/tim-tu-pian-20200621231637.jpg)
+
+
 
 ## 2.6 素数模高次同余式
 
