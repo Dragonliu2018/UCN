@@ -15,7 +15,13 @@ description: P54 P61
 
 **平方剩余定义：**设 m 是正整数，若同余式 $$x^{2} \equiv a(\bmod m), \quad(a, m)=1 $$ 有解，则 a 叫做模 m 的平方剩余；否则，a 叫做模 m 的平方非剩余。
 
-**判断二次同余式是否有解：\*\*\*\***
+**判断二次同余式是否有解：**二次同余式的一般形式 $$ax^2+bx+c\equiv0(\bmod m)$$ 
+
+1. 利用同余性质化简；
+2. 将整数m分解为素数幂的乘积 $$m=p_{1}^{\alpha_{1}} p_{2}^{\alpha_{2}} \cdots p_{k}^{\alpha_{k}}$$ ，上述同余式等价于同余式组 $$a x^{2}+b x+c \equiv 0\left(\bmod p_{i}^{\alpha_{i}}\right)$$ ， $$i=1, \cdots, k$$ ，所以只需讨论 $$a x^{2}+b x+c \equiv 0\left(\bmod p^{\alpha}\right)$$
+3. 这里可以利用同余性质因子：若模p无解，则上式无解。有解 $$x_1$$ 时，若 $$\left(f^{\prime}\left(x_{1}\right), p\right)=1$$ ，则对应上式一个解，判断结束；否则无法判断，继续执行第4步
+4. 当 $$\left(4 a, p^{\alpha}\right)=1$$ 时，将上式两边同乘以 4a 可化为 $$(2 a x+b)^{2} \equiv b^{2}-4 a c\left(\bmod p^{\alpha}\right)$$ ，此时令 $$y=2 a x+b$$ ， $$A=b^{2}-4 a c$$， 上式就变为 $$y^{2} \equiv A\left(\bmod p^{\alpha}\right)$$ 
+5. 当 $$\left(4 a, p^{\alpha}\right) \neq 1$$ 时，要么可以直接分析出 $$ax^2+bx+c\equiv0(\bmod m)$$ 是否有解，要么可以用其它方法将其转化为 $$y^{2} \equiv A\left(\bmod p^{\alpha}\right)$$ 的形式
 
 **求解模m的所有平方剩余：**
 
@@ -170,11 +176,12 @@ description: P54 P61
 
 **求解高次同余式：**利用指标表和上述指标的性质， 当 $$m=2,4, p^{\alpha} \text { 或 } 2 p^{\alpha}$$ 时，可以得出如下求解方法：
 
-1. 求模m的一个原根 g；
-2. 求以 g 为底的模m的指标表；
-3. 查指标表求 a 对应的指标；
-4. 求解一次同余式 $$ny=\operatorname{ind} a(\bmod \varphi(m))$$ 
-5. 再次查表，求以 y 为指标对应的数，即为解。
+1. 化成该形式 $$x^{n} \equiv a(\bmod m),(a, m)=1$$ 
+2. 求模m的一个原根 g；
+3. 求以 g 为底的模m的指标表；
+4. 查指标表求 a 对应的指标；
+5. 求解一次同余式 $$ny=\operatorname{ind} a(\bmod \varphi(m))$$ 
+6. 再次查表，求以 y 为指标对应的数，即为解。
 
 ### 0x02 应考试题
 
