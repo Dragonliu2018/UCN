@@ -57,4 +57,8 @@
     * [窗口感知的高斯引导滤波+图像滤波整理](ji-qi-shi-jue-shi-yan-shi/lun-wen-fu-xian/tu-xiang-lv-bo.md)
 * [机器学习\(周志华西瓜书\)](ji-qi-xue-xi-zhou-zhi-hua-xi-gua-shu/README.md)
   * [第1章 绪论](ji-qi-xue-xi-zhou-zhi-hua-xi-gua-shu/di-1-zhang-xu-lun.md)
+* [论文积累](lun-wen-ji-lei/README.md)
+  * [区块链](lun-wen-ji-lei/qu-kuai-lian/README.md)
+    * [Bitcoin: A Peer-to-Peer Electronic Cash System](lun-wen-ji-lei/qu-kuai-lian/bitcoin-a-peer-to-peer-electronic-cash-system.md)
+    * [Bobtail: Improved Blockchain Securitywith Low-Variance Mining](lun-wen-ji-lei/qu-kuai-lian/bobtail-improved-blockchain-securitywith-low-variance-mining.md)
 
