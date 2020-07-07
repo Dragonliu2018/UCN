@@ -11,6 +11,7 @@
   * [第5章 程序的执行](ji-suan-ji-zu-cheng-yuan-li-2/di-5-zhang-cheng-xu-de-zhi-hang.md)
   * [第6章 层次结构存储系统](ji-suan-ji-zu-cheng-yuan-li-2/di-6-zhang-ceng-ci-jie-gou-cun-chu-xi-tong.md)
   * [第7章 异常控制流](ji-suan-ji-zu-cheng-yuan-li-2/di-7-zhang-yi-chang-kong-zhi-liu.md)
+  * [第8章 I/O操作的实现](ji-suan-ji-zu-cheng-yuan-li-2/di-8-zhang-io-cao-zuo-de-shi-xian.md)
   * [PA问题](ji-suan-ji-zu-cheng-yuan-li-2/pa-wen-ti.md)
 * [概率论与数理统计2](gai-lv-lun-yu-shu-li-tong-ji-2/README.md)
   * [第0章 准备工作](gai-lv-lun-yu-shu-li-tong-ji-2/di-0-zhang-zhun-bei-gong-zuo.md)
