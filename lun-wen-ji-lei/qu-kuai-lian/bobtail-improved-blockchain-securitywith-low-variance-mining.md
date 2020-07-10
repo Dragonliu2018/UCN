@@ -19,11 +19,17 @@
 
 ### b. 摘要
 
+         区块链系统被设计成以恒定的平均速率生产区块\(blocks\)。当前，最流行的系统采用工作量证明（PoW）算法作为创建这些块的方法。所有采用PoW的区块链系统有一个不幸的限制，那就是块之间的生成时间差异很大。例如，比特币平均每10分钟产生一个区块。然而，有5％的概率，比特币的区块生成间隔\(Inter-block time\)至少为40分钟。
+
+        在本文中，我们表明\(区块生成时间的\)高差异性是对PoW区块链\(PoW blockchains\)进行基本攻击的根源。我们提出了一种PoW区块\(PoW-based block\)发现的替代过程，该过程导致区块生成间隔\(Inter-block time\)的方差大大降低。我们的算法称为\_Bobtail\_，将使用单个PoW样本的当前算法推广为包含k个样本的算法。我们表明，块间时间\(Inter-block time\)的方差随着k的增加而减小。Bobtail显著地阻止双重支付\(doublespend\)和自私采矿\(selfish mining\)攻击。例如，对于比特币和以太坊\(Ethereum\)，当商人设置1个区块禁运时，拥有40％采矿能力的“双花”攻击者将以53％的概率成功；但是，当k ≥ 40时，同一攻击者的成功概率降至1％以下。同样，对于当前的比特币和以太坊，拥有49％采矿能力的自私矿工将拥有约95％的区块；然而，当k ≥ 20时，同一矿工会发现自私采矿不如诚实采矿成功。我们还调查Bobtail新近带来的攻击，并展示如何将其击败。我们方法的主要成本是更大的区块和增加的网络流量。
+
+
+
 ## 03. Conclusion
 
 ### a. Conclusion
 
-        We have designed and characterized a novel method of lowvariance blockchain mining called Bobtail. We have derived expressions for the expectation and variance of the Bobtail mining proof of work and its mining time for any value of k. Using these expressions, we have shown that Bobtail reduces variance in block inter-arrival time by a factor of O\(1=k\), compared to using k = 1. We have also shown that forks are inadvertently created by Bobtail miners no more often than existing systems, and that dishonest miners receive significantly lower rewards due to minor protocol adjustments. Furthermore, we have demonstrated that low-variance mining significantly reduces the effectiveness of doublespend and selfish mining attacks, and that our design thwarts withholding and denialof-service attacks. Finally we have introduced a policy for miner coordination in Bobtail that keeps network traffic to a minimum.
+        We have designed and characterized a novel method of low-variance blockchain mining called Bobtail. We have derived expressions for the expectation and variance of the Bobtail mining proof of work and its mining time for any value of k. Using these expressions, we have shown that Bobtail reduces variance in block inter-arrival time by a factor of O\(1/k\), compared to using k = 1. We have also shown that forks are inadvertently created by Bobtail miners no more often than existing systems, and that dishonest miners receive significantly lower rewards due to minor protocol adjustments. Furthermore, we have demonstrated that low-variance mining significantly reduces the effectiveness of doublespend and selfish mining attacks, and that our design thwarts withholding and denialof-service attacks. Finally we have introduced a policy for miner coordination in Bobtail that keeps network traffic to a minimum.
 
 ### b. 结论
 
