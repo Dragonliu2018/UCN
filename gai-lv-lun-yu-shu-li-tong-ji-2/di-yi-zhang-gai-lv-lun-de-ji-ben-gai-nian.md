@@ -12,8 +12,8 @@
 
 ## **0x02 概率的一些重要性质**
 
-1. **减法公式**： $$P(B-A)=P(B)-P(AB)$$ ，特别地：当 $$A \subset B$$时， $$P(B-A)=P(B)-P(A)$$   
-2. **加法公式**： $$P(A \bigcup B) = P(A)+P(B)-P(AB)$$ 推广：[容斥原理](https://baike.baidu.com/item/%E5%AE%B9%E6%96%A5%E5%8E%9F%E7%90%86)
+1. 减法公式： $$P(B-A)=P(B)-P(AB)$$ ，特别地：当 $$A \subset B$$时， $$P(B-A)=P(B)-P(A)$$   
+2. 加法公式： $$P(A \bigcup B) = P(A)+P(B)-P(AB)$$ 推广：[容斥原理](https://baike.baidu.com/item/%E5%AE%B9%E6%96%A5%E5%8E%9F%E7%90%86)
 
 ## **0x03 古典概型（等可能概型）**
 
@@ -26,7 +26,7 @@
 ## **0x04 条件概率**
 
 1. 在古典概型中： $$P(B | A) = \frac{n_{AB}}{n_A} = \frac {P(AB)}{P(A)}$$ \(计算条件概率的两种方法\)  
-2. **乘法定理（变形）**：若 $$P(A)>0$$ ，则 $$P(AB) = P(A)P(B | A)$$   推广:  $$P(AB)>0$$ , 则有 $$P(ABC)=P(A)P(B|A)P(C|AB)  $$   
+2. 乘法定理（变形）：若 $$P(A)>0$$ ，则 $$P(AB) = P(A)P(B | A)$$   推广:  $$P(AB)>0$$ , 则有 $$P(ABC)=P(A)P(B|A)P(C|AB)  $$   
 3. 全概率公式： $$P(A) = \sum_{i=1}^n {P(A|B_i)P(B_i)}$$ （知原因推结果，找样本空间的划分）特例： $$P(A) = P(AB)+P(A \overline B)$$   
 4. 贝叶斯公式： $$P(B_i|A) = \frac{P(AB_i)}{P(A)} = \frac{P(A|B_i)P(B_i)}{P(A)}$$ （知结果推原因）
 
